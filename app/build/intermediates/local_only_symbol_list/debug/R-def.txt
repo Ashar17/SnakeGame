@@ -1,0 +1,17 @@
+R_DEF: Internal format may change without notice
+local
+color black
+color white
+drawable apple
+drawable body
+drawable head
+drawable ic_launcher_background
+drawable ic_launcher_foreground
+layout activity_main
+mipmap ic_launcher
+mipmap ic_launcher_round
+string tap_to_play
+style Base.Theme.Snake
+style Base.Theme.com.example.snake.Snake
+xml backup_rules
+xml data_extraction_rules
