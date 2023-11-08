@@ -2902,6 +2902,7 @@ drawable abc_vector_test
 drawable apple
 drawable avd_hide_password
 drawable avd_show_password
+drawable badapple
 drawable body
 drawable btn_checkbox_checked_mtrl
 drawable btn_checkbox_checked_to_unchecked_mtrl_animation

@@ -50,6 +50,9 @@ class SnakeGame extends SurfaceView implements Runnable{
 
     //add the new object bad apple
     private BadApple mBadApple;
+    private boolean isBadAppleOnScreen = false;
+    private long badAppleStartTime;
+    private final long BAD_APPLE_DURATION = 5000; // 5 seconds in milliseconds
 
 
     // This is the constructor method that gets called
@@ -123,7 +126,10 @@ class SnakeGame extends SurfaceView implements Runnable{
         // Get the apple ready for dinner
         mApple.spawn();
 
+        // Initialize bad apple state and timing
         mBadApple.spawn();
+        isBadAppleOnScreen = true;
+        badAppleStartTime = System.currentTimeMillis();
 
         // Reset the mScore
         mScore = 0;
@@ -200,15 +206,27 @@ class SnakeGame extends SurfaceView implements Runnable{
 
             mBadApple.spawn();
 
+            isBadAppleOnScreen = true;
+            badAppleStartTime = System.currentTimeMillis();
+
             // subtract to  mScore
             mScore = mScore - 1;
-
-            // Remove the last segment of the snake's body
-            mSnake.removeTailSegment(mCanvas, mPaint);
 
             // Play a sound
             mSP.play(mEat_ID, 1, 1, 0, 0, 1);
 
+//            if(mSnake.getSegmentLocations().size() > 0){
+//                mSnake.getSegmentLocations().remove(mSnake.getSegmentLocations().size() - 1);
+//            }
+
+
+        }
+
+        // Check if it's time to respawn the bad apple
+        if (isBadAppleOnScreen && (System.currentTimeMillis() - badAppleStartTime >= BAD_APPLE_DURATION)) {
+            mBadApple.spawn();
+            isBadAppleOnScreen = true;
+            badAppleStartTime = System.currentTimeMillis();
         }
 
         // Did the snake die?

@@ -3,6 +3,7 @@ local
 color black
 color white
 drawable apple
+drawable badapple
 drawable body
 drawable head
 drawable ic_launcher_background

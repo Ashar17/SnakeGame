@@ -15,14 +15,13 @@ import com.example.snake.R;
 import java.util.ArrayList;
 
 class Snake {
-
+  
     // The location in the grid of all the segments
     private ArrayList<Point> segmentLocations;
 
     // How big is each segment of the snake?
     private int mSegmentSize;
 
-    private int segmentsToRemove = 1;
 
     // How big is the entire grid
     private Point mMoveRange;
@@ -305,16 +304,9 @@ class Snake {
         }
     }
 
-    void removeTailSegment( Canvas canvas, Paint paint) {
-        if (!segmentLocations.isEmpty()) {
-            segmentLocations.remove(segmentLocations.size() - 1);
-            //remove one segment of the snake when it eats a bad apple
-            for (int i = 1; i < segmentLocations.size() - segmentsToRemove; i++) {
-                canvas.drawBitmap(mBitmapBody,
-                        segmentLocations.get(i).x * mSegmentSize,
-                        segmentLocations.get(i).y * mSegmentSize, paint);
-            }
-        }
+     ArrayList<Point> getSegmentLocations(){
+        return segmentLocations;
     }
+
 
 }
