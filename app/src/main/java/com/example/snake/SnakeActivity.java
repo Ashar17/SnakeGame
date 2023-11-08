@@ -1,10 +1,8 @@
 package com.example.snake;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.app.Activity;
 import android.graphics.Point;
-import android.os.Bundle;
 import android.view.Display;
 
 import com.example.snake.SnakeGame;
