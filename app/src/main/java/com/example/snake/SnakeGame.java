@@ -181,13 +181,6 @@ class SnakeGame extends SurfaceView implements Runnable{
             // Play a sound
 
             mSound.badAppleSound();
-
-
-//            if(mSnake.getSegmentLocations().size() > 0){
-//                mSnake.getSegmentLocations().remove(mSnake.getSegmentLocations().size() - 1);
-//            }
-
-
         }
 
         // Check if it's time to respawn the bad apple
