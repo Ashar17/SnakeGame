@@ -19,7 +19,6 @@ class SnakeGame extends SurfaceView implements Runnable{
     private volatile boolean mPlaying = false;
     private volatile boolean mPaused = true;
 
-    // for playing sound effects
     private GameSound mSound;
 
     // The size in segments of the playable area
@@ -41,6 +40,9 @@ class SnakeGame extends SurfaceView implements Runnable{
 
     //add the new object bad apple
     private BadApple mBadApple;
+    private boolean isBadAppleOnScreen = false;
+    private long badAppleStartTime;
+    private final long BAD_APPLE_DURATION = 5000; // 5 seconds in milliseconds
 
 
     // This is the constructor method that gets called
@@ -56,6 +58,7 @@ class SnakeGame extends SurfaceView implements Runnable{
         // Initialize Sound Object
         mSound = new GameSound(context);
 
+
         // Initialize the drawing objects
         mSurfaceHolder = getHolder();
         mPaint = new Paint();
@@ -65,6 +68,7 @@ class SnakeGame extends SurfaceView implements Runnable{
                 new Point(NUM_BLOCKS_WIDE,
                         mNumBlocksHigh),
                 blockSize);
+
 
         //call the constructor of the newly created bad apple
         mBadApple = new BadApple(context, new Point(NUM_BLOCKS_WIDE,
@@ -88,7 +92,10 @@ class SnakeGame extends SurfaceView implements Runnable{
         // Get the apple ready for dinner
         mApple.spawn();
 
+        // Initialize bad apple state and timing
         mBadApple.spawn();
+        isBadAppleOnScreen = true;
+        badAppleStartTime = System.currentTimeMillis();
 
         // Reset the mScore
         mScore = 0;
@@ -165,15 +172,29 @@ class SnakeGame extends SurfaceView implements Runnable{
 
             mBadApple.spawn();
 
+            isBadAppleOnScreen = true;
+            badAppleStartTime = System.currentTimeMillis();
+
             // subtract to  mScore
             mScore = mScore - 1;
 
-            // Remove the last segment of the snake's body
-            mSnake.removeTailSegment(mCanvas, mPaint);
-
             // Play a sound
-            mSound.eatAppleSound();
 
+            mSound.badAppleSound();
+
+
+//            if(mSnake.getSegmentLocations().size() > 0){
+//                mSnake.getSegmentLocations().remove(mSnake.getSegmentLocations().size() - 1);
+//            }
+
+
+        }
+
+        // Check if it's time to respawn the bad apple
+        if (isBadAppleOnScreen && (System.currentTimeMillis() - badAppleStartTime >= BAD_APPLE_DURATION)) {
+            mBadApple.spawn();
+            isBadAppleOnScreen = true;
+            badAppleStartTime = System.currentTimeMillis();
         }
 
         // Did the snake die?

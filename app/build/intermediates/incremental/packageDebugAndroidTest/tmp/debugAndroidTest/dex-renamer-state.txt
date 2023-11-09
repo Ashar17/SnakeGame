@@ -1,0 +1,7 @@
+#Tue Nov 07 21:18:09 PST 2023
+base.0=C\:\\Users\\ashar\\AndroidStudioProjects\\Snake\\app\\build\\intermediates\\dex\\debugAndroidTest\\mergeExtDexDebugAndroidTest\\classes.dex
+base.1=C\:\\Users\\ashar\\AndroidStudioProjects\\Snake\\app\\build\\intermediates\\dex\\debugAndroidTest\\mergeProjectDexDebugAndroidTest\\0\\classes.dex
+path.0=classes.dex
+path.1=0/classes.dex
+renamed.0=classes.dex
+renamed.1=classes2.dex
