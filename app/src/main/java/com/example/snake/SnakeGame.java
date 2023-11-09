@@ -8,14 +8,18 @@ import android.graphics.Point;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import java.util.ArrayList;
 
-class SnakeGame extends SurfaceView implements Runnable{
+class SnakeGame extends SurfaceView implements Runnable, SnakeGameBroadcaster {
 
     // Objects for the game loop/thread
     private Thread mThread = null;
     // Control pausing between updates
     private long mNextFrameTime;
-
+    // Array List for observers
+    private ArrayList<InputObserver> inputObservers = new ArrayList();
+    // UI controller class
+    UIController mUIController;
     // Initialize Game State
     private GameState mGameState;
     // for playing sound effects
@@ -30,7 +34,7 @@ class SnakeGame extends SurfaceView implements Runnable{
     private SurfaceHolder mSurfaceHolder;
     private Paint mPaint;
     // Initialize HUD object
-    private HUD hud;
+    private HUD mHUD;
 
     // A snake ssss
     private Snake mSnake;
@@ -49,7 +53,8 @@ class SnakeGame extends SurfaceView implements Runnable{
     public SnakeGame(Context context, Point size) {
         super(context);
         mGameState = new GameState(this, context);
-        hud = new HUD (size, mGameState);
+        mHUD = new HUD (size, mGameState);
+        mUIController = new UIController(this);
 
         // Work out how many pixels each block is
         int blockSize = size.x / NUM_BLOCKS_WIDE;
@@ -81,6 +86,11 @@ class SnakeGame extends SurfaceView implements Runnable{
                         mNumBlocksHigh),
                 blockSize);
 
+    }
+
+    // To make SnakeGame a broadcaster for the observer design pattern
+    public void addObserver(InputObserver observer){
+        inputObservers.add(observer);
     }
 
 
@@ -223,9 +233,11 @@ class SnakeGame extends SurfaceView implements Runnable{
             if(!mGameState.getPaused()) {
                 // Draw the score
                 mCanvas.drawText("" + mGameState.getScore(), 20, 120, mPaint);
+                // Draw pause control
+                mHUD.drawControls(mCanvas, mPaint);
             } else {
                 // Draw some text while paused
-                hud.draw(mCanvas, mPaint);
+                mHUD.draw(mCanvas, mPaint);
             }
 
 
@@ -238,12 +250,23 @@ class SnakeGame extends SurfaceView implements Runnable{
     public boolean onTouchEvent(MotionEvent motionEvent) {
         switch (motionEvent.getAction() & MotionEvent.ACTION_MASK) {
             case MotionEvent.ACTION_UP:
-                if (mGameState.getPaused() || mGameState.getGameOver()){
+                if (mGameState.getPaused() && (mGameState.getGameOver() || mGameState.getGameStart())){
                     mGameState.resume();
                     newGame();
 
                     // Don't want to process snake direction for this tap
                     return true;
+                }
+                // if game is just paused, don't start new game !
+                else if (mGameState.getPaused() && !mGameState.getGameOver() && !mGameState.getGameStart()){
+                    mGameState.resume();
+
+                    // Don't want to process snake direction for this tap as well
+                    return true;
+                }
+                // if player touches HUD controls, handle input
+                for (InputObserver o : inputObservers) {
+                    o.handleInput(motionEvent, mGameState, mHUD.getControls());
                 }
 
                 // this signals the game that it shouldn't display the starting screen
