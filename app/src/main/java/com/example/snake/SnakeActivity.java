@@ -5,8 +5,6 @@ import android.app.Activity;
 import android.graphics.Point;
 import android.view.Display;
 
-import com.example.snake.SnakeGame;
-
 public class SnakeActivity extends Activity {
 
     // Declare an instance of SnakeGame
