@@ -1,20 +1,13 @@
 package com.example.snake;
 
 import android.content.Context;
-import android.content.res.AssetFileDescriptor;
-import android.content.res.AssetManager;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
-import android.media.AudioAttributes;
-import android.media.AudioManager;
-import android.media.SoundPool;
-import android.os.Build;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import java.io.IOException;
 
 class SnakeGame extends SurfaceView implements Runnable{
 
@@ -26,14 +19,6 @@ class SnakeGame extends SurfaceView implements Runnable{
     private volatile boolean mPlaying = false;
     private volatile boolean mPaused = true;
 
-    // for playing sound effects
-//    private SoundPool mSP;
-//    private int mEat_ID = -1;
-//    private int mCrashID = -1;
-//
-//    private int mHurtID = -1;
-
-    // for playing sound effects
     private GameSound mSound;
 
     // The size in segments of the playable area
@@ -72,6 +57,18 @@ class SnakeGame extends SurfaceView implements Runnable{
 
         // Initialize Sound Object
         mSound = new GameSound(context);
+
+
+        // Initialize the drawing objects
+        mSurfaceHolder = getHolder();
+        mPaint = new Paint();
+
+        // Call the constructors of our two game objects
+        mApple = new Apple(context,
+                new Point(NUM_BLOCKS_WIDE,
+                        mNumBlocksHigh),
+                blockSize);
+
 
         //call the constructor of the newly created bad apple
         mBadApple = new BadApple(context, new Point(NUM_BLOCKS_WIDE,
@@ -182,7 +179,9 @@ class SnakeGame extends SurfaceView implements Runnable{
             mScore = mScore - 1;
 
             // Play a sound
+
             mSound.badAppleSound();
+
 
 //            if(mSnake.getSegmentLocations().size() > 0){
 //                mSnake.getSegmentLocations().remove(mSnake.getSegmentLocations().size() - 1);

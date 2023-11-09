@@ -14,7 +14,10 @@ public class GameSound {
     private SoundPool mSP;
     private int mEatID;
     private int mCrashID;
+
     private int mHurtID;
+
+
 
     GameSound(Context context){
         // Declare sound variables in constructor
@@ -22,7 +25,10 @@ public class GameSound {
 
         mCrashID = -1;
 
+
         mHurtID = -1;
+
+
 
         // Initialize the SoundPool upon creation of GameSound object
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -64,8 +70,11 @@ public class GameSound {
         mSP.play(mCrashID, 1, 1, 0, 0, 1);
     }
 
+
     void badAppleSound(){
         mSP.play(mHurtID, 1, 1, 0, 0, 1);
     }
 
 }
+}
+
