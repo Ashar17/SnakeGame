@@ -303,10 +303,7 @@ class Snake {
             }
         }
     }
-
      ArrayList<Point> getSegmentLocations(){
         return segmentLocations;
     }
-
-
 }
