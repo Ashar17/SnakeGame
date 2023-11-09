@@ -34,7 +34,7 @@ class BadApple implements IDrawable {
         location.x = -10;
 
         // Load the image to the bitmap
-        mBitmapApple = BitmapFactory.decodeResource(context.getResources(), R.drawable.apple);
+        mBitmapApple = BitmapFactory.decodeResource(context.getResources(), R.drawable.badapple);
 
         // Resize the bitmap
         mBitmapApple = Bitmap.createScaledBitmap(mBitmapApple, s, s, false);
