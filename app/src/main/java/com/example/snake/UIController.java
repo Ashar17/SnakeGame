@@ -15,7 +15,6 @@ public class UIController implements InputObserver {
         int i = event.getActionIndex();
         int x = (int) event.getX(i);
         int y = (int) event.getY(i);
-
         int eventType = event.getAction() & MotionEvent.ACTION_MASK;
 
         if(eventType == MotionEvent.ACTION_UP || eventType == MotionEvent.ACTION_POINTER_UP){

@@ -53,7 +53,8 @@ class SnakeGame extends SurfaceView implements Runnable, SnakeGameBroadcaster {
     public SnakeGame(Context context, Point size) {
         super(context);
         mGameState = new GameState(this, context);
-        mHUD = new HUD (size, mGameState);
+        //HUD is now a singleton class
+        mHUD = HUD.getInstance(context, size, mGameState);
         mUIController = new UIController(this);
 
         // Work out how many pixels each block is
@@ -269,8 +270,9 @@ class SnakeGame extends SurfaceView implements Runnable, SnakeGameBroadcaster {
                     o.handleInput(motionEvent, mGameState, mHUD.getControls());
                 }
 
-                // this signals the game that it shouldn't display the starting screen
-                mGameState.setGameStart(false);
+                if(mGameState.getPaused()){
+                    return true;
+                }
                 // Let the Snake class handle the input
                 mSnake.switchHeading(motionEvent);
                 break;
