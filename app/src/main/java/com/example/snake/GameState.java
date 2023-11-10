@@ -68,6 +68,7 @@ public class GameState {
         mGameOver = false;
         mPaused = false;
         mPlaying = true;
+        mGameStart = false;
     }
     void stopEverything(){
         mPaused = true;
@@ -83,7 +84,5 @@ public class GameState {
     boolean getGameStart() {
         return mGameStart;
     }
-    void setGameStart(boolean g){
-        mGameStart = g;
-    }
+
 }
