@@ -13,7 +13,7 @@ public class GameState {
     // This is how we will make all the high scores persist
     private SharedPreferences.Editor mEditor;
 
-    GameState(SnakeGame sg, Context context){
+    GameState(Context context){
         // Get the current high score
         SharedPreferences prefs;
         prefs = context.getSharedPreferences("HiScore",
@@ -63,6 +63,11 @@ public class GameState {
     }
     void pause(){
         mPaused = true;
+    }
+    void startScreen(){
+        mGameStart = true;
+        mPaused = true;
+        mGameOver = false;
     }
     void resume(){
         mGameOver = false;
