@@ -20,7 +20,7 @@ public class HUD implements IDrawable {
     // declare array list index
     static int PAUSE = 0; // index for in-game controls
     static int RESTART = 0; // index for game over screen
-    static int START = 1; // index for game over screen
+    static int RETURNBUTTON = 1; // index for game over screen
 
     // making the constructor private ensures only the HUD class can instantiate itself (singleton)
     private HUD(Point size, GameState gs){
@@ -54,11 +54,16 @@ public class HUD implements IDrawable {
         Rect restart = new Rect ((mScreenWidth / 5) - 10, ((mScreenHeight / 5) * 4) - 160,
                 (mScreenWidth / 5) + 450, ((mScreenHeight / 5) * 4) - 40);
 
+        // preparing boundaries of return button based on screen size
+        Rect returnButton = new Rect ((mScreenWidth / 5) * 3 - 10, ((mScreenHeight / 5) * 4) - 160,
+                (mScreenWidth / 5) * 3 + 410, ((mScreenHeight / 5) * 4) - 40);
+
         controls = new ArrayList<>();
         controls.add(PAUSE, pause);
 
         gameOverControls = new ArrayList<>();
         gameOverControls.add(RESTART, restart);
+        gameOverControls.add(RETURNBUTTON, returnButton);
     }
 
     @Override
@@ -107,10 +112,13 @@ public class HUD implements IDrawable {
             canvas.drawRect(r.left, r.top, r.right, r.bottom, paint);
         }
 
-        //display restart button text
         paint.setTextSize(mTextFormatting * 3);
         paint.setColor(Color.argb(255,0,0,0));
+        //display restart button text
         canvas.drawText("Restart", mScreenWidth / 5, ((mScreenHeight / 5) * 4) - 50, paint);
+
+        //display return button text
+        canvas.drawText("Return", (mScreenWidth / 5) * 3, ((mScreenHeight / 5) * 4) - 50, paint);
     }
     ArrayList<Rect> getControls(){
         return controls;

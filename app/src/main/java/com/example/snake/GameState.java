@@ -64,6 +64,11 @@ public class GameState {
     void pause(){
         mPaused = true;
     }
+    void startScreen(){
+        mGameStart = true;
+        mPaused = true;
+        mGameOver = false;
+    }
     void resume(){
         mGameOver = false;
         mPaused = false;

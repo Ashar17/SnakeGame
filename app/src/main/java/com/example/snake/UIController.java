@@ -20,19 +20,28 @@ public class UIController implements InputObserver {
         int eventType = event.getAction() & MotionEvent.ACTION_MASK;
 
         if(eventType == MotionEvent.ACTION_UP || eventType == MotionEvent.ACTION_POINTER_UP){
-            if(buttons.get(HUD.PAUSE).contains(x, y)){
-                // if the game is not paused, pause it
-                if(!gs.getPaused()) {
-                    Log.i("UIController", "pause");
-                    gs.pause();
+            if (buttons.size() > 1) {
+                if (buttons.get(HUD.RESTART).contains(x, y)) {
+                    // player pressed restart button, start new game
+                    if (gs.getGameOver()) {
+                        gs.resume();
+                        sg.newGame();
+                    }
+                } else if (buttons.get(HUD.RETURNBUTTON).contains(x, y)) {
+                    // player pressed return button, change game states to show start screen
+                    if (gs.getGameOver()) {
+                        Log.i("UIController", "return pressed");
+                        gs.startScreen();
+                    }
                 }
-            }
-            if (buttons.get(HUD.RESTART).contains(x, y)){
-                // player pressed restart button, start new game
-                 if(gs.getGameOver()){
-                     gs.resume();
-                     sg.newGame();
-                 }
+            } else {
+                if(buttons.get(HUD.PAUSE).contains(x, y)){
+                    // if the game is not paused, pause it
+                    if(!gs.getPaused()) {
+                        Log.i("UIController", "pause");
+                        gs.pause();
+                    }
+                }
             }
         }
     }
