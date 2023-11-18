@@ -1,13 +1,15 @@
 package com.example.snake;
 
-import android.graphics.Point;
+import android.util.Log;
 import android.graphics.Rect;
 import android.view.MotionEvent;
 import java.util.ArrayList;
 
 public class UIController implements InputObserver {
+    private SnakeGameBroadcaster sg;
     public UIController(SnakeGameBroadcaster b){
         b.addObserver(this);
+        this.sg = b;
     }
 
     @Override
@@ -19,20 +21,18 @@ public class UIController implements InputObserver {
 
         if(eventType == MotionEvent.ACTION_UP || eventType == MotionEvent.ACTION_POINTER_UP){
             if(buttons.get(HUD.PAUSE).contains(x, y)){
-                // player pressed the pause button, respond based on game state
-
-                // if the game is not paused
+                // if the game is not paused, pause it
                 if(!gs.getPaused()) {
+                    Log.i("UIController", "pause");
                     gs.pause();
                 }
-                // if game over start new game
-                else if(gs.getGameOver()){
-                    gs.startNewGame();
-                }
-                // paused and not game over
-                else if(gs.getPaused() && !gs.getGameOver()){
-                    gs.resume();
-                }
+            }
+            if (buttons.get(HUD.RESTART).contains(x, y)){
+                // player pressed restart button, start new game
+                 if(gs.getGameOver()){
+                     gs.resume();
+                     sg.newGame();
+                 }
             }
         }
     }

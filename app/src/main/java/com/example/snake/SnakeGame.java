@@ -9,6 +9,7 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import java.util.ArrayList;
+import android.util.Log;
 
 class SnakeGame extends SurfaceView implements Runnable, SnakeGameBroadcaster {
 
@@ -52,7 +53,7 @@ class SnakeGame extends SurfaceView implements Runnable, SnakeGameBroadcaster {
     // from com.example.snake.SnakeActivity
     public SnakeGame(Context context, Point size) {
         super(context);
-        mGameState = new GameState(this, context);
+        mGameState = new GameState(context);
         //HUD is now a singleton class
         mHUD = HUD.getInstance(context, size, mGameState);
         mUIController = new UIController(this);
@@ -251,7 +252,7 @@ class SnakeGame extends SurfaceView implements Runnable, SnakeGameBroadcaster {
     public boolean onTouchEvent(MotionEvent motionEvent) {
         switch (motionEvent.getAction() & MotionEvent.ACTION_MASK) {
             case MotionEvent.ACTION_UP:
-                if (mGameState.getPaused() && (mGameState.getGameOver() || mGameState.getGameStart())){
+                if (mGameState.getPaused() && mGameState.getGameStart()){
                     mGameState.resume();
                     newGame();
 
@@ -265,14 +266,24 @@ class SnakeGame extends SurfaceView implements Runnable, SnakeGameBroadcaster {
                     // Don't want to process snake direction for this tap as well
                     return true;
                 }
-                // if player touches HUD controls, handle input
+                else if (mGameState.getPaused() && mGameState.getGameOver() && !mGameState.getGameStart()) {
+                    // when game over screen is displayed, enable HUD buttons
+                    for (InputObserver o : inputObservers) {
+                        o.handleInput(motionEvent, mGameState, mHUD.getGameOverControls());
+                    }
+                    return true;
+                }
+
+                // when player touches HUD controls, handle input
                 for (InputObserver o : inputObservers) {
                     o.handleInput(motionEvent, mGameState, mHUD.getControls());
                 }
 
-                if(mGameState.getPaused()){
+                if (mGameState.getPaused()){
+                    // prevents pause button from updating snake direction
                     return true;
                 }
+
                 // Let the Snake class handle the input
                 mSnake.switchHeading(motionEvent);
                 break;

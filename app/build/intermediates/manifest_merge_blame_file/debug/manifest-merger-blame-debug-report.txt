@@ -9,22 +9,22 @@
 9        android:targetSdkVersion="33" />
 10
 11    <permission
-11-->[androidx.core:core:1.9.0] /Users/Jessica/.gradle/caches/transforms-3/25d17c91d5902985514078e82b64555a/transformed/core-1.9.0/AndroidManifest.xml:22:5-24:47
+11-->[androidx.core:core:1.9.0] /Users/Jessica/.gradle/caches/transforms-3/d333ff4b3c3f350dac60fc644a50ba15/transformed/core-1.9.0/AndroidManifest.xml:22:5-24:47
 12        android:name="com.example.snake.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
-12-->[androidx.core:core:1.9.0] /Users/Jessica/.gradle/caches/transforms-3/25d17c91d5902985514078e82b64555a/transformed/core-1.9.0/AndroidManifest.xml:23:9-81
+12-->[androidx.core:core:1.9.0] /Users/Jessica/.gradle/caches/transforms-3/d333ff4b3c3f350dac60fc644a50ba15/transformed/core-1.9.0/AndroidManifest.xml:23:9-81
 13        android:protectionLevel="signature" />
-13-->[androidx.core:core:1.9.0] /Users/Jessica/.gradle/caches/transforms-3/25d17c91d5902985514078e82b64555a/transformed/core-1.9.0/AndroidManifest.xml:24:9-44
+13-->[androidx.core:core:1.9.0] /Users/Jessica/.gradle/caches/transforms-3/d333ff4b3c3f350dac60fc644a50ba15/transformed/core-1.9.0/AndroidManifest.xml:24:9-44
 14
 15    <uses-permission android:name="com.example.snake.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
-15-->[androidx.core:core:1.9.0] /Users/Jessica/.gradle/caches/transforms-3/25d17c91d5902985514078e82b64555a/transformed/core-1.9.0/AndroidManifest.xml:26:5-97
-15-->[androidx.core:core:1.9.0] /Users/Jessica/.gradle/caches/transforms-3/25d17c91d5902985514078e82b64555a/transformed/core-1.9.0/AndroidManifest.xml:26:22-94
+15-->[androidx.core:core:1.9.0] /Users/Jessica/.gradle/caches/transforms-3/d333ff4b3c3f350dac60fc644a50ba15/transformed/core-1.9.0/AndroidManifest.xml:26:5-97
+15-->[androidx.core:core:1.9.0] /Users/Jessica/.gradle/caches/transforms-3/d333ff4b3c3f350dac60fc644a50ba15/transformed/core-1.9.0/AndroidManifest.xml:26:22-94
 16
 17    <application
 17-->/Users/Jessica/Desktop/SnakeGame/app/src/main/AndroidManifest.xml:5:5-22:19
 18        android:allowBackup="true"
 18-->/Users/Jessica/Desktop/SnakeGame/app/src/main/AndroidManifest.xml:6:9-35
 19        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-19-->[androidx.core:core:1.9.0] /Users/Jessica/.gradle/caches/transforms-3/25d17c91d5902985514078e82b64555a/transformed/core-1.9.0/AndroidManifest.xml:28:18-86
+19-->[androidx.core:core:1.9.0] /Users/Jessica/.gradle/caches/transforms-3/d333ff4b3c3f350dac60fc644a50ba15/transformed/core-1.9.0/AndroidManifest.xml:28:18-86
 20        android:debuggable="true"
 21        android:extractNativeLibs="false"
 22        android:icon="@mipmap/ic_launcher"
@@ -61,25 +61,25 @@
 38        </activity>
 39
 40        <provider
-40-->[androidx.emoji2:emoji2:1.2.0] /Users/Jessica/.gradle/caches/transforms-3/2359ec2300da750368c8a650184da00c/transformed/emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
+40-->[androidx.emoji2:emoji2:1.2.0] /Users/Jessica/.gradle/caches/transforms-3/1566bfeacefffdbab56e4b0ba642ef61/transformed/emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
 41            android:name="androidx.startup.InitializationProvider"
-41-->[androidx.emoji2:emoji2:1.2.0] /Users/Jessica/.gradle/caches/transforms-3/2359ec2300da750368c8a650184da00c/transformed/emoji2-1.2.0/AndroidManifest.xml:25:13-67
+41-->[androidx.emoji2:emoji2:1.2.0] /Users/Jessica/.gradle/caches/transforms-3/1566bfeacefffdbab56e4b0ba642ef61/transformed/emoji2-1.2.0/AndroidManifest.xml:25:13-67
 42            android:authorities="com.example.snake.androidx-startup"
-42-->[androidx.emoji2:emoji2:1.2.0] /Users/Jessica/.gradle/caches/transforms-3/2359ec2300da750368c8a650184da00c/transformed/emoji2-1.2.0/AndroidManifest.xml:26:13-68
+42-->[androidx.emoji2:emoji2:1.2.0] /Users/Jessica/.gradle/caches/transforms-3/1566bfeacefffdbab56e4b0ba642ef61/transformed/emoji2-1.2.0/AndroidManifest.xml:26:13-68
 43            android:exported="false" >
-43-->[androidx.emoji2:emoji2:1.2.0] /Users/Jessica/.gradle/caches/transforms-3/2359ec2300da750368c8a650184da00c/transformed/emoji2-1.2.0/AndroidManifest.xml:27:13-37
+43-->[androidx.emoji2:emoji2:1.2.0] /Users/Jessica/.gradle/caches/transforms-3/1566bfeacefffdbab56e4b0ba642ef61/transformed/emoji2-1.2.0/AndroidManifest.xml:27:13-37
 44            <meta-data
-44-->[androidx.emoji2:emoji2:1.2.0] /Users/Jessica/.gradle/caches/transforms-3/2359ec2300da750368c8a650184da00c/transformed/emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
+44-->[androidx.emoji2:emoji2:1.2.0] /Users/Jessica/.gradle/caches/transforms-3/1566bfeacefffdbab56e4b0ba642ef61/transformed/emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
 45                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-45-->[androidx.emoji2:emoji2:1.2.0] /Users/Jessica/.gradle/caches/transforms-3/2359ec2300da750368c8a650184da00c/transformed/emoji2-1.2.0/AndroidManifest.xml:30:17-75
+45-->[androidx.emoji2:emoji2:1.2.0] /Users/Jessica/.gradle/caches/transforms-3/1566bfeacefffdbab56e4b0ba642ef61/transformed/emoji2-1.2.0/AndroidManifest.xml:30:17-75
 46                android:value="androidx.startup" />
-46-->[androidx.emoji2:emoji2:1.2.0] /Users/Jessica/.gradle/caches/transforms-3/2359ec2300da750368c8a650184da00c/transformed/emoji2-1.2.0/AndroidManifest.xml:31:17-49
+46-->[androidx.emoji2:emoji2:1.2.0] /Users/Jessica/.gradle/caches/transforms-3/1566bfeacefffdbab56e4b0ba642ef61/transformed/emoji2-1.2.0/AndroidManifest.xml:31:17-49
 47            <meta-data
-47-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/Jessica/.gradle/caches/transforms-3/d78e4e26e1aefc152d0ee4dc6a642534/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:31:13-33:52
+47-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/Jessica/.gradle/caches/transforms-3/7fd68ec9a923843ac830cf15c59e349a/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:31:13-33:52
 48                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-48-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/Jessica/.gradle/caches/transforms-3/d78e4e26e1aefc152d0ee4dc6a642534/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:32:17-78
+48-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/Jessica/.gradle/caches/transforms-3/7fd68ec9a923843ac830cf15c59e349a/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:32:17-78
 49                android:value="androidx.startup" />
-49-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/Jessica/.gradle/caches/transforms-3/d78e4e26e1aefc152d0ee4dc6a642534/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:33:17-49
+49-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/Jessica/.gradle/caches/transforms-3/7fd68ec9a923843ac830cf15c59e349a/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:33:17-49
 50        </provider>
 51    </application>
 52
