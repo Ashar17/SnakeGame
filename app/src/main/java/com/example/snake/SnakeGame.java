@@ -167,6 +167,9 @@ class SnakeGame extends SurfaceView implements Runnable, SnakeGameBroadcaster {
 
         // Did the head of the snake eat the apple?
         if(mSnake.checkDinner(mApple.getLocation())){
+            //adjust speed
+            mSnake.increaseSpeed();
+
             // This reminds me of Edge of Tomorrow.
             // One day the apple will be ready!
             mApple.spawn();
@@ -180,6 +183,9 @@ class SnakeGame extends SurfaceView implements Runnable, SnakeGameBroadcaster {
 
         // Did the head of the snake eat the bad apple?
         if(mSnake.checkDinner(mBadApple.getLocation())){
+            //adjust speed
+            mSnake.decreaseSpeed();
+
             // This reminds me of Edge of Tomorrow.
             // One day the apple will be ready
 

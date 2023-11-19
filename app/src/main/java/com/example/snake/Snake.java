@@ -46,6 +46,13 @@ class Snake implements IDrawable {
     // A bitmap for the body
     private Bitmap mBitmapBody;
 
+    // New speed variable
+    private double mSpeed;
+
+    // Constants for speed adjustments
+    private static final double normalSpeed = 1;
+    private static final double speedMultiplier = 1.1;
+
 
     Snake(Context context, Point mr, int ss) {
 
@@ -114,6 +121,8 @@ class Snake implements IDrawable {
         // The halfway point across the screen in pixels
         // Used to detect which side of screen was pressed
         halfWayPoint = mr.x * ss / 2;
+
+        mSpeed = normalSpeed;
     }
 
     // Get the snake ready for a new game
@@ -127,6 +136,8 @@ class Snake implements IDrawable {
 
         // Start with a single snake segment
         segmentLocations.add(new Point(w / 2, h / 2));
+
+        mSpeed = normalSpeed;
     }
 
 
@@ -146,22 +157,22 @@ class Snake implements IDrawable {
         // Get the existing head position
         Point p = segmentLocations.get(0);
 
-        // Move it appropriately
+        // Move it appropriately with speed adjustment
         switch (heading) {
             case UP:
-                p.y--;
+                p.y -= mSpeed;
                 break;
 
             case RIGHT:
-                p.x++;
+                p.x += mSpeed;
                 break;
 
             case DOWN:
-                p.y++;
+                p.y += mSpeed;
                 break;
 
             case LEFT:
-                p.x--;
+                p.x -= mSpeed;
                 break;
         }
 
@@ -302,6 +313,16 @@ class Snake implements IDrawable {
                     break;
             }
         }
+    }
+
+    void increaseSpeed() {
+        // Increase the speed when the snake eats an apple
+        mSpeed *= speedMultiplier;
+    }
+
+    void decreaseSpeed() {
+        // Decrease the speed when the snake eats a bad apple
+        mSpeed /= speedMultiplier;
     }
      ArrayList<Point> getSegmentLocations(){
         return segmentLocations;
