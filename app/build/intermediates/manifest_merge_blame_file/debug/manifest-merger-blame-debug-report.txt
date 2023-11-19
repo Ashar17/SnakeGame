@@ -9,77 +9,78 @@
 9        android:targetSdkVersion="33" />
 10
 11    <permission
-11-->[androidx.core:core:1.9.0] C:\Users\ashar\.gradle\caches\transforms-3\28a7af075d5af218c19b63a2f54b1523\transformed\core-1.9.0\AndroidManifest.xml:22:5-24:47
+11-->[androidx.core:core:1.9.0] /Users/Jessica/.gradle/caches/transforms-3/d333ff4b3c3f350dac60fc644a50ba15/transformed/core-1.9.0/AndroidManifest.xml:22:5-24:47
 12        android:name="com.example.snake.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
-12-->[androidx.core:core:1.9.0] C:\Users\ashar\.gradle\caches\transforms-3\28a7af075d5af218c19b63a2f54b1523\transformed\core-1.9.0\AndroidManifest.xml:23:9-81
+12-->[androidx.core:core:1.9.0] /Users/Jessica/.gradle/caches/transforms-3/d333ff4b3c3f350dac60fc644a50ba15/transformed/core-1.9.0/AndroidManifest.xml:23:9-81
 13        android:protectionLevel="signature" />
-13-->[androidx.core:core:1.9.0] C:\Users\ashar\.gradle\caches\transforms-3\28a7af075d5af218c19b63a2f54b1523\transformed\core-1.9.0\AndroidManifest.xml:24:9-44
+13-->[androidx.core:core:1.9.0] /Users/Jessica/.gradle/caches/transforms-3/d333ff4b3c3f350dac60fc644a50ba15/transformed/core-1.9.0/AndroidManifest.xml:24:9-44
 14
 15    <uses-permission android:name="com.example.snake.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
-15-->[androidx.core:core:1.9.0] C:\Users\ashar\.gradle\caches\transforms-3\28a7af075d5af218c19b63a2f54b1523\transformed\core-1.9.0\AndroidManifest.xml:26:5-97
-15-->[androidx.core:core:1.9.0] C:\Users\ashar\.gradle\caches\transforms-3\28a7af075d5af218c19b63a2f54b1523\transformed\core-1.9.0\AndroidManifest.xml:26:22-94
+15-->[androidx.core:core:1.9.0] /Users/Jessica/.gradle/caches/transforms-3/d333ff4b3c3f350dac60fc644a50ba15/transformed/core-1.9.0/AndroidManifest.xml:26:5-97
+15-->[androidx.core:core:1.9.0] /Users/Jessica/.gradle/caches/transforms-3/d333ff4b3c3f350dac60fc644a50ba15/transformed/core-1.9.0/AndroidManifest.xml:26:22-94
 16
 17    <application
-17-->C:\Users\ashar\AndroidStudioProjects\Snake\app\src\main\AndroidManifest.xml:5:5-22:19
+17-->/Users/Jessica/Desktop/SnakeGame/app/src/main/AndroidManifest.xml:5:5-22:19
 18        android:allowBackup="true"
-18-->C:\Users\ashar\AndroidStudioProjects\Snake\app\src\main\AndroidManifest.xml:6:9-35
+18-->/Users/Jessica/Desktop/SnakeGame/app/src/main/AndroidManifest.xml:6:9-35
 19        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-19-->[androidx.core:core:1.9.0] C:\Users\ashar\.gradle\caches\transforms-3\28a7af075d5af218c19b63a2f54b1523\transformed\core-1.9.0\AndroidManifest.xml:28:18-86
+19-->[androidx.core:core:1.9.0] /Users/Jessica/.gradle/caches/transforms-3/d333ff4b3c3f350dac60fc644a50ba15/transformed/core-1.9.0/AndroidManifest.xml:28:18-86
 20        android:debuggable="true"
 21        android:extractNativeLibs="false"
 22        android:icon="@mipmap/ic_launcher"
-22-->C:\Users\ashar\AndroidStudioProjects\Snake\app\src\main\AndroidManifest.xml:7:9-43
+22-->/Users/Jessica/Desktop/SnakeGame/app/src/main/AndroidManifest.xml:7:9-43
 23        android:label="tap_to_play"
-23-->C:\Users\ashar\AndroidStudioProjects\Snake\app\src\main\AndroidManifest.xml:8:9-36
+23-->/Users/Jessica/Desktop/SnakeGame/app/src/main/AndroidManifest.xml:8:9-36
 24        android:roundIcon="@mipmap/ic_launcher_round"
-24-->C:\Users\ashar\AndroidStudioProjects\Snake\app\src\main\AndroidManifest.xml:9:9-54
+24-->/Users/Jessica/Desktop/SnakeGame/app/src/main/AndroidManifest.xml:9:9-54
 25        android:supportsRtl="true"
-25-->C:\Users\ashar\AndroidStudioProjects\Snake\app\src\main\AndroidManifest.xml:10:9-35
-26        android:theme="@style/Base.Theme.Snake" >
-26-->C:\Users\ashar\AndroidStudioProjects\Snake\app\src\main\AndroidManifest.xml:11:9-48
-27        <activity
-27-->C:\Users\ashar\AndroidStudioProjects\Snake\app\src\main\AndroidManifest.xml:12:9-21:20
-28            android:name="com.example.snake.SnakeActivity"
-28-->C:\Users\ashar\AndroidStudioProjects\Snake\app\src\main\AndroidManifest.xml:12:19-47
-29            android:exported="true"
-29-->C:\Users\ashar\AndroidStudioProjects\Snake\app\src\main\AndroidManifest.xml:15:13-38
-30            android:screenOrientation="landscape"
-30-->C:\Users\ashar\AndroidStudioProjects\Snake\app\src\main\AndroidManifest.xml:14:13-50
-31            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
-31-->C:\Users\ashar\AndroidStudioProjects\Snake\app\src\main\AndroidManifest.xml:13:13-71
-32            <intent-filter>
-32-->C:\Users\ashar\AndroidStudioProjects\Snake\app\src\main\AndroidManifest.xml:16:13-20:29
-33                <action android:name="android.intent.action.MAIN" />
-33-->C:\Users\ashar\AndroidStudioProjects\Snake\app\src\main\AndroidManifest.xml:17:17-69
-33-->C:\Users\ashar\AndroidStudioProjects\Snake\app\src\main\AndroidManifest.xml:17:25-66
-34
-35                <category android:name="android.intent.category.LAUNCHER" />
-35-->C:\Users\ashar\AndroidStudioProjects\Snake\app\src\main\AndroidManifest.xml:19:17-77
-35-->C:\Users\ashar\AndroidStudioProjects\Snake\app\src\main\AndroidManifest.xml:19:27-74
-36            </intent-filter>
-37        </activity>
-38
-39        <provider
-39-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ashar\.gradle\caches\transforms-3\9ec162b5cb5dad7a953e18733a42dbca\transformed\emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
-40            android:name="androidx.startup.InitializationProvider"
-40-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ashar\.gradle\caches\transforms-3\9ec162b5cb5dad7a953e18733a42dbca\transformed\emoji2-1.2.0\AndroidManifest.xml:25:13-67
-41            android:authorities="com.example.snake.androidx-startup"
-41-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ashar\.gradle\caches\transforms-3\9ec162b5cb5dad7a953e18733a42dbca\transformed\emoji2-1.2.0\AndroidManifest.xml:26:13-68
-42            android:exported="false" >
-42-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ashar\.gradle\caches\transforms-3\9ec162b5cb5dad7a953e18733a42dbca\transformed\emoji2-1.2.0\AndroidManifest.xml:27:13-37
-43            <meta-data
-43-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ashar\.gradle\caches\transforms-3\9ec162b5cb5dad7a953e18733a42dbca\transformed\emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
-44                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-44-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ashar\.gradle\caches\transforms-3\9ec162b5cb5dad7a953e18733a42dbca\transformed\emoji2-1.2.0\AndroidManifest.xml:30:17-75
-45                android:value="androidx.startup" />
-45-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ashar\.gradle\caches\transforms-3\9ec162b5cb5dad7a953e18733a42dbca\transformed\emoji2-1.2.0\AndroidManifest.xml:31:17-49
-46            <meta-data
-46-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\ashar\.gradle\caches\transforms-3\4eb4b953398cff91e70e367f7f0f5a04\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:31:13-33:52
-47                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-47-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\ashar\.gradle\caches\transforms-3\4eb4b953398cff91e70e367f7f0f5a04\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:32:17-78
-48                android:value="androidx.startup" />
-48-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\ashar\.gradle\caches\transforms-3\4eb4b953398cff91e70e367f7f0f5a04\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:33:17-49
-49        </provider>
-50    </application>
-51
-52</manifest>
+25-->/Users/Jessica/Desktop/SnakeGame/app/src/main/AndroidManifest.xml:10:9-35
+26        android:testOnly="true"
+27        android:theme="@style/Base.Theme.Snake" >
+27-->/Users/Jessica/Desktop/SnakeGame/app/src/main/AndroidManifest.xml:11:9-48
+28        <activity
+28-->/Users/Jessica/Desktop/SnakeGame/app/src/main/AndroidManifest.xml:12:9-21:20
+29            android:name="com.example.snake.SnakeActivity"
+29-->/Users/Jessica/Desktop/SnakeGame/app/src/main/AndroidManifest.xml:12:19-47
+30            android:exported="true"
+30-->/Users/Jessica/Desktop/SnakeGame/app/src/main/AndroidManifest.xml:15:13-38
+31            android:screenOrientation="landscape"
+31-->/Users/Jessica/Desktop/SnakeGame/app/src/main/AndroidManifest.xml:14:13-50
+32            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+32-->/Users/Jessica/Desktop/SnakeGame/app/src/main/AndroidManifest.xml:13:13-71
+33            <intent-filter>
+33-->/Users/Jessica/Desktop/SnakeGame/app/src/main/AndroidManifest.xml:16:13-20:29
+34                <action android:name="android.intent.action.MAIN" />
+34-->/Users/Jessica/Desktop/SnakeGame/app/src/main/AndroidManifest.xml:17:17-69
+34-->/Users/Jessica/Desktop/SnakeGame/app/src/main/AndroidManifest.xml:17:25-66
+35
+36                <category android:name="android.intent.category.LAUNCHER" />
+36-->/Users/Jessica/Desktop/SnakeGame/app/src/main/AndroidManifest.xml:19:17-77
+36-->/Users/Jessica/Desktop/SnakeGame/app/src/main/AndroidManifest.xml:19:27-74
+37            </intent-filter>
+38        </activity>
+39
+40        <provider
+40-->[androidx.emoji2:emoji2:1.2.0] /Users/Jessica/.gradle/caches/transforms-3/1566bfeacefffdbab56e4b0ba642ef61/transformed/emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
+41            android:name="androidx.startup.InitializationProvider"
+41-->[androidx.emoji2:emoji2:1.2.0] /Users/Jessica/.gradle/caches/transforms-3/1566bfeacefffdbab56e4b0ba642ef61/transformed/emoji2-1.2.0/AndroidManifest.xml:25:13-67
+42            android:authorities="com.example.snake.androidx-startup"
+42-->[androidx.emoji2:emoji2:1.2.0] /Users/Jessica/.gradle/caches/transforms-3/1566bfeacefffdbab56e4b0ba642ef61/transformed/emoji2-1.2.0/AndroidManifest.xml:26:13-68
+43            android:exported="false" >
+43-->[androidx.emoji2:emoji2:1.2.0] /Users/Jessica/.gradle/caches/transforms-3/1566bfeacefffdbab56e4b0ba642ef61/transformed/emoji2-1.2.0/AndroidManifest.xml:27:13-37
+44            <meta-data
+44-->[androidx.emoji2:emoji2:1.2.0] /Users/Jessica/.gradle/caches/transforms-3/1566bfeacefffdbab56e4b0ba642ef61/transformed/emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
+45                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+45-->[androidx.emoji2:emoji2:1.2.0] /Users/Jessica/.gradle/caches/transforms-3/1566bfeacefffdbab56e4b0ba642ef61/transformed/emoji2-1.2.0/AndroidManifest.xml:30:17-75
+46                android:value="androidx.startup" />
+46-->[androidx.emoji2:emoji2:1.2.0] /Users/Jessica/.gradle/caches/transforms-3/1566bfeacefffdbab56e4b0ba642ef61/transformed/emoji2-1.2.0/AndroidManifest.xml:31:17-49
+47            <meta-data
+47-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/Jessica/.gradle/caches/transforms-3/7fd68ec9a923843ac830cf15c59e349a/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:31:13-33:52
+48                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+48-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/Jessica/.gradle/caches/transforms-3/7fd68ec9a923843ac830cf15c59e349a/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:32:17-78
+49                android:value="androidx.startup" />
+49-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/Jessica/.gradle/caches/transforms-3/7fd68ec9a923843ac830cf15c59e349a/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:33:17-49
+50        </provider>
+51    </application>
+52
+53</manifest>
