@@ -157,25 +157,34 @@ class Snake implements IDrawable {
         // Get the existing head position
         Point p = segmentLocations.get(0);
 
-        // Move it appropriately with speed adjustment
+        // Move it appropriately
         switch (heading) {
             case UP:
-                p.y -= mSpeed;
+                p.y--;
                 break;
 
             case RIGHT:
-                p.x += mSpeed;
+                p.x++;
                 break;
 
             case DOWN:
-                p.y += mSpeed;
+                p.y++;
                 break;
 
             case LEFT:
-                p.x -= mSpeed;
+                p.x--;
                 break;
         }
 
+    }
+    void increaseSpeed() {
+        // Increase the speed when the snake eats an apple
+        mSpeed *= speedMultiplier;
+    }
+
+    void decreaseSpeed() {
+        // Decrease the speed when the snake eats a bad apple
+        mSpeed /= speedMultiplier;
     }
 
     boolean detectDeath(int mScore) {
@@ -315,15 +324,6 @@ class Snake implements IDrawable {
         }
     }
 
-    void increaseSpeed() {
-        // Increase the speed when the snake eats an apple
-        mSpeed *= speedMultiplier;
-    }
-
-    void decreaseSpeed() {
-        // Decrease the speed when the snake eats a bad apple
-        mSpeed /= speedMultiplier;
-    }
      ArrayList<Point> getSegmentLocations(){
         return segmentLocations;
     }

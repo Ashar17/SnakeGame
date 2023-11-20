@@ -48,6 +48,8 @@ class SnakeGame extends SurfaceView implements Runnable, SnakeGameBroadcaster {
     private long badAppleStartTime;
     private final long BAD_APPLE_DURATION = 5000; // 5 seconds in milliseconds
 
+    long TARGET_FPS = 10;
+
 
     // This is the constructor method that gets called
     // from com.example.snake.SnakeActivity
@@ -138,7 +140,7 @@ class SnakeGame extends SurfaceView implements Runnable, SnakeGameBroadcaster {
     public boolean updateRequired() {
 
         // Run at 10 frames per second
-        final long TARGET_FPS = 10;
+//        TARGET_FPS = updatedfps;
         // There are 1000 milliseconds in a second
         final long MILLIS_PER_SECOND = 1000;
 
@@ -169,6 +171,8 @@ class SnakeGame extends SurfaceView implements Runnable, SnakeGameBroadcaster {
         if(mSnake.checkDinner(mApple.getLocation())){
             //adjust speed
             mSnake.increaseSpeed();
+//            long updatedFps = TARGET_FPS *10;
+//            updateRequired(updatedFps);
 
             // This reminds me of Edge of Tomorrow.
             // One day the apple will be ready!
