@@ -2,14 +2,22 @@ package com.example.snake;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class GameState {
     private static volatile boolean mPaused = true;
     private static volatile boolean mPlaying = false;
     private static volatile boolean mGameOver = false;
     private static volatile boolean mGameStart = true;
+
+    private static final int maxHighScore = 3;
     private int mScore;
     private int mHighScore;
+
+    private List<Integer> mHighScores;
+
     // This is how we will make all the high scores persist
     private SharedPreferences.Editor mEditor;
 
@@ -23,7 +31,16 @@ public class GameState {
         // Load high score from a entry in the file
         // labeled "hiscore"
         // if not available highscore set to zero 0
-        mHighScore = prefs.getInt("hi_score", 0);
+//        mHighScore = prefs.getInt("hi_score", 0);
+
+        // Load previous high scores
+        mHighScores = new ArrayList<>();
+        for (int i = 0; i < maxHighScore; i++) {
+            mHighScores.add(prefs.getInt("hi_score_" + i, 0));
+        }
+
+        // Sort the high scores in descending order
+        Collections.sort(mHighScores, Collections.reverseOrder());
     }
 
     void startNewGame(){
@@ -35,12 +52,33 @@ public class GameState {
     public void endGame(){
         mGameOver = true;
         mPaused = true;
-        if(mScore > mHighScore){
-            mHighScore = mScore;
-            // Save high score
-            mEditor.putInt("hi_score", mHighScore);
-            mEditor.commit();
+//        if(mScore > mHighScore){
+//            mHighScore = mScore;
+//            // Save high score
+//            mEditor.putInt("hi_score", mHighScore);
+//            mEditor.commit();
+//        }
+
+        if (mScore > mHighScores.get(maxHighScore - 1)) {
+            mHighScores.set(maxHighScore - 1, mScore);
+            // Save high scores
+            saveHighScores();
         }
+    }
+
+    private void saveHighScores() {
+        // Sort the high scores in descending order
+        Collections.sort(mHighScores, Collections.reverseOrder());
+
+        // Save the high scores to SharedPreferences
+        for (int i = 0; i < maxHighScore; i++) {
+            mEditor.putInt("hi_score_" + i, mHighScores.get(i));
+        }
+        mEditor.apply();
+    }
+
+    List<Integer> getHighScores() {
+        return mHighScores;
     }
 
     void increaseScore(){

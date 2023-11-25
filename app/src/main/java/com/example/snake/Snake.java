@@ -46,14 +46,6 @@ class Snake implements IDrawable {
     // A bitmap for the body
     private Bitmap mBitmapBody;
 
-    // New speed variable
-    private double mSpeed;
-
-    // Constants for speed adjustments
-    private static final double normalSpeed = 1;
-    private static final double speedMultiplier = 1.1;
-
-
     Snake(Context context, Point mr, int ss) {
 
         // Initialize our ArrayList
@@ -67,20 +59,20 @@ class Snake implements IDrawable {
         // Create and scale the bitmaps
         mBitmapHeadRight = BitmapFactory
                 .decodeResource(context.getResources(),
-                        R.drawable.head);
+                        R.drawable.head1);
 
         // Create 3 more versions of the head for different headings
         mBitmapHeadLeft = BitmapFactory
                 .decodeResource(context.getResources(),
-                        R.drawable.head);
+                        R.drawable.head1);
 
         mBitmapHeadUp = BitmapFactory
                 .decodeResource(context.getResources(),
-                        R.drawable.head);
+                        R.drawable.head1);
 
         mBitmapHeadDown = BitmapFactory
                 .decodeResource(context.getResources(),
-                        R.drawable.head);
+                        R.drawable.head1);
 
         // Modify the bitmaps to face the snake head
         // in the correct direction
@@ -121,8 +113,6 @@ class Snake implements IDrawable {
         // The halfway point across the screen in pixels
         // Used to detect which side of screen was pressed
         halfWayPoint = mr.x * ss / 2;
-
-        mSpeed = normalSpeed;
     }
 
     // Get the snake ready for a new game
@@ -136,8 +126,6 @@ class Snake implements IDrawable {
 
         // Start with a single snake segment
         segmentLocations.add(new Point(w / 2, h / 2));
-
-        mSpeed = normalSpeed;
     }
 
 
@@ -176,15 +164,6 @@ class Snake implements IDrawable {
                 break;
         }
 
-    }
-    void increaseSpeed() {
-        // Increase the speed when the snake eats an apple
-        mSpeed *= speedMultiplier;
-    }
-
-    void decreaseSpeed() {
-        // Decrease the speed when the snake eats a bad apple
-        mSpeed /= speedMultiplier;
     }
 
     boolean detectDeath(int mScore) {
