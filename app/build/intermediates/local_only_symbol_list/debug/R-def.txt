@@ -6,6 +6,7 @@ drawable apple
 drawable badapple
 drawable body
 drawable head
+drawable head1
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 layout activity_main

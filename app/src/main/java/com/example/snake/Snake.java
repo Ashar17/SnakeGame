@@ -46,7 +46,6 @@ class Snake implements IDrawable {
     // A bitmap for the body
     private Bitmap mBitmapBody;
 
-
     Snake(Context context, Point mr, int ss) {
 
         // Initialize our ArrayList
@@ -60,20 +59,20 @@ class Snake implements IDrawable {
         // Create and scale the bitmaps
         mBitmapHeadRight = BitmapFactory
                 .decodeResource(context.getResources(),
-                        R.drawable.head);
+                        R.drawable.head1);
 
         // Create 3 more versions of the head for different headings
         mBitmapHeadLeft = BitmapFactory
                 .decodeResource(context.getResources(),
-                        R.drawable.head);
+                        R.drawable.head1);
 
         mBitmapHeadUp = BitmapFactory
                 .decodeResource(context.getResources(),
-                        R.drawable.head);
+                        R.drawable.head1);
 
         mBitmapHeadDown = BitmapFactory
                 .decodeResource(context.getResources(),
-                        R.drawable.head);
+                        R.drawable.head1);
 
         // Modify the bitmaps to face the snake head
         // in the correct direction
@@ -303,6 +302,7 @@ class Snake implements IDrawable {
             }
         }
     }
+
      ArrayList<Point> getSegmentLocations(){
         return segmentLocations;
     }

@@ -27,7 +27,7 @@ public class HUD implements IDrawable {
         mScreenHeight = size.y;
         mScreenWidth = size.x;
         mTextFormatting = size.x / 50;
-        mHudFormatting = size.x / 25;
+        mHudFormatting = size.x / 30;
         this.gs = gs;
 
         prepareControls();
@@ -80,8 +80,13 @@ public class HUD implements IDrawable {
         // if game is paused
         if(gs.getPaused() && !gs.getGameOver() && !gs.getGameStart()){
             paint.setTextSize(mHudFormatting);
-            canvas.drawText("High Score: " + gs.getHighScore(), mHudFormatting, mHudFormatting, paint);
-            canvas.drawText("Score: " + gs.getScore(), mHudFormatting, mHudFormatting * 2, paint);
+            // Display the top three high scores
+            for (int i = 0; i < gs.getHighScores().size(); i++) {
+                int score = gs.getHighScores().get(i);
+                canvas.drawText("Top " + (i + 1) + ": " + score, mHudFormatting, mHudFormatting * (i + 1), paint);
+            }
+
+            canvas.drawText("Current Score: " + gs.getScore(), mHudFormatting, mHudFormatting * (gs.getHighScores().size() + 1), paint);
             paint.setTextSize(mTextFormatting * 5);
             canvas.drawText("PAUSED", mScreenWidth / 3, mScreenHeight /2 ,paint);
         }
@@ -89,8 +94,12 @@ public class HUD implements IDrawable {
         // if player has died
         if(gs.getPaused() && gs.getGameOver()) {
             paint.setTextSize(mHudFormatting);
-            canvas.drawText("High Score: " + gs.getHighScore(), mHudFormatting, mHudFormatting, paint);
-            canvas.drawText("Score: " + gs.getScore(), mHudFormatting, mHudFormatting * 2, paint);
+            // Display the top three high scores here as well
+            for (int i = 0; i < gs.getHighScores().size(); i++) {
+                int score = gs.getHighScores().get(i);
+                canvas.drawText("Top " + (i + 1) + ": " + score, mHudFormatting, mHudFormatting * (i + 1), paint);
+            }
+            canvas.drawText("Current Score: " + gs.getScore(), mHudFormatting, mHudFormatting * (gs.getHighScores().size() + 1), paint);
             paint.setTextSize(mTextFormatting * 5);
             canvas.drawText("GAME OVER", mScreenWidth / 5, mScreenHeight / 2, paint);
             drawGameOverScreen(canvas, paint);
