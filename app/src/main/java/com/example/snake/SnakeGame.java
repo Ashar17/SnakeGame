@@ -184,7 +184,7 @@ class SnakeGame extends SurfaceView implements Runnable, SnakeGameBroadcaster {
         }
 
         // Did the head of the snake eat the bad apple?
-        if(mSnake.checkDinner(mBadApple.getLocation())){
+        if(mSnake.checkFoodPoisoning(mBadApple.getLocation())){
 
             // This reminds me of Edge of Tomorrow.
             // One day the apple will be ready
@@ -201,6 +201,7 @@ class SnakeGame extends SurfaceView implements Runnable, SnakeGameBroadcaster {
 
             mSound.badAppleSound();
         }
+
 
         // Check if it's time to respawn the bad apple
         if (isBadAppleOnScreen && (System.currentTimeMillis() - badAppleStartTime >= BAD_APPLE_DURATION)) {
