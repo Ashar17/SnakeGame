@@ -170,6 +170,9 @@ class Snake implements IDrawable {
         // Has the snake died?
         boolean dead = false;
 
+        if(!(segmentLocations.size() >= 1)){
+            return true;
+        }
         // Hit any of the screen edges
         if (segmentLocations.get(0).x == -1 ||
                 segmentLocations.get(0).x > mMoveRange.x ||
@@ -205,6 +208,22 @@ class Snake implements IDrawable {
             // move it will take the position of
             // the segment in front of it
             segmentLocations.add(new Point(-10, -10));
+            return true;
+        }
+        return false;
+    }
+
+    boolean checkFoodPoisoning(Point l) {
+        //Similar to check dinner, but for bad apples
+        //Using checkDinner for bad apples does subtract score, but still adds length, this will fix that.
+        //if (snakeXs[0] == l.x && snakeYs[0] == l.y) {
+        if (segmentLocations.get(0).x == l.x &&
+                segmentLocations.get(0).y == l.y) {
+            //Removes the added segment when eating Bad Apple
+            segmentLocations.remove(segmentLocations.size() - 1);
+            return true;
+        } else if (segmentLocations.get(0).x == l.x &&
+                segmentLocations.get(0).y == l.y && segmentLocations.size() == 1){
             return true;
         }
         return false;

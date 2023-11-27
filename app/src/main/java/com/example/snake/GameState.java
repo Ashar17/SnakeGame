@@ -14,7 +14,6 @@ public class GameState {
 
     private static final int maxHighScore = 3;
     private int mScore;
-    private int mHighScore;
 
     private List<Integer> mHighScores;
 
@@ -89,9 +88,6 @@ public class GameState {
     }
     int getScore(){
         return mScore;
-    }
-    int getHighScore(){
-        return mHighScore;
     }
     void startPlaying(){
         mPlaying = true;
