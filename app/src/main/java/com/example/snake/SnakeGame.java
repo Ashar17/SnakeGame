@@ -184,10 +184,7 @@ class SnakeGame extends SurfaceView implements Runnable, SnakeGameBroadcaster {
         }
 
         // Did the head of the snake eat the bad apple?
-        if(mSnake.checkDinner(mBadApple.getLocation())){
-
-            // This reminds me of Edge of Tomorrow.
-            // One day the apple will be ready
+        if(mSnake.checkFoodPoisoning(mBadApple.getLocation())){
 
             mBadApple.spawn();
 
@@ -198,7 +195,6 @@ class SnakeGame extends SurfaceView implements Runnable, SnakeGameBroadcaster {
             mGameState.decreaseScore();
 
             // Play a sound
-
             mSound.badAppleSound();
         }
 
@@ -211,9 +207,7 @@ class SnakeGame extends SurfaceView implements Runnable, SnakeGameBroadcaster {
 
         // Did the snake die?
         if (mSnake.detectDeath(mGameState.getScore())) {
-            // Pause the game ready to start again
             mSound.deathSound();
-
             mGameState.endGame();
         }
 
