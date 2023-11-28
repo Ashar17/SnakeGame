@@ -40,7 +40,7 @@ abstract class AbstractApple implements IDrawable {
     }
 
     // This is called every time an apple is eaten
-    void spawn(){
+    void spawnApple(){
         // Choose two random values and place the apple
         Random random = new Random();
         location.x = random.nextInt(mSpawnRange.x) + 1;

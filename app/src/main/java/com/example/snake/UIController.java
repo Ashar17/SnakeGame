@@ -6,8 +6,8 @@ import android.view.MotionEvent;
 import java.util.ArrayList;
 
 public class UIController implements InputObserver {
-    private SnakeGameBroadcaster sg;
-    public UIController(SnakeGameBroadcaster b){
+    private ISnakeGameBroadcaster sg;
+    public UIController(ISnakeGameBroadcaster b){
         b.addObserver(this);
         this.sg = b;
     }

@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
+import android.graphics.Rect;
 import android.os.SystemClock;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -12,7 +13,7 @@ import android.view.SurfaceView;
 import java.util.ArrayList;
 import android.util.Log;
 
-class SnakeGame extends SurfaceView implements Runnable, SnakeGameBroadcaster {
+class SnakeGame extends SurfaceView implements Runnable, ISnakeGameBroadcaster {
 
     // Objects for the game loop/thread
     private Thread mThread = null;
@@ -46,13 +47,8 @@ class SnakeGame extends SurfaceView implements Runnable, SnakeGameBroadcaster {
     private BombApple mBombApple;
     //add the new object bad apple
     private BadApple mBadApple;
-    private boolean isBadAppleOnScreen = false;
-    private boolean isBombAppleOnScreen = false;
-    private long bombAppleStartTime;
-    private final long BOMB_APPLE_DURATION = 5000;
-    private long badAppleStartTime;
-    private final long BAD_APPLE_DURATION = 5000; // 5 seconds in milliseconds
-
+    private ArrayList<IObstacle> obstacles;
+    private ArrayList<IDrawable> gameObjects;
     long TARGET_FPS = 10;
     // used to calculate elapsed time
     long startTime, elapsedMilliSeconds;
@@ -88,7 +84,10 @@ class SnakeGame extends SurfaceView implements Runnable, SnakeGameBroadcaster {
                 blockSize);
 
         //Call Constructor of Bomb Apple
-        mBombApple = new BombApple(context, new Point(NUM_BLOCKS_WIDE, mNumBlocksHigh), blockSize);
+        mBombApple = new BombApple(context,
+                new Point(NUM_BLOCKS_WIDE,
+                        mNumBlocksHigh),
+                blockSize);
 
 
         //call the constructor of the newly created bad apple
@@ -100,6 +99,18 @@ class SnakeGame extends SurfaceView implements Runnable, SnakeGameBroadcaster {
                 new Point(NUM_BLOCKS_WIDE,
                         mNumBlocksHigh),
                 blockSize);
+
+        // put obstacles in array list
+        obstacles = new ArrayList<>();
+        obstacles.add(mBadApple);
+        obstacles.add(mBombApple);
+
+        // put game objects into array list
+        gameObjects = new ArrayList<>();
+        gameObjects.add(mSnake);
+        gameObjects.add(mApple);
+        gameObjects.add(mBadApple);
+        gameObjects.add(mBombApple);
 
     }
 
@@ -116,17 +127,12 @@ class SnakeGame extends SurfaceView implements Runnable, SnakeGameBroadcaster {
         mSnake.reset(NUM_BLOCKS_WIDE, mNumBlocksHigh);
 
         // Get the apple ready for dinner
-        mApple.spawn();
+        mApple.spawnApple();
 
-        // Initialize bad apple state and timing
-        mBadApple.spawn();
-        isBadAppleOnScreen = true;
-        badAppleStartTime = System.currentTimeMillis();
-
-        // Initialize bomb apple state and timing
-        mBombApple.spawn();
-        isBombAppleOnScreen = true;
-        bombAppleStartTime = System.currentTimeMillis();
+        for(IObstacle o : obstacles){
+            o.spawn();
+            o.isOnScreen();
+        }
 
         // Resets the Score and changes state variables
         mGameState.startNewGame();
@@ -206,7 +212,7 @@ class SnakeGame extends SurfaceView implements Runnable, SnakeGameBroadcaster {
 
             // This reminds me of Edge of Tomorrow.
             // One day the apple will be ready!
-            mApple.spawn();
+            mApple.spawnApple();
 
             // Add to Score
             mGameState.increaseScore();
@@ -218,39 +224,30 @@ class SnakeGame extends SurfaceView implements Runnable, SnakeGameBroadcaster {
         // Did the head of the snake eat the bad apple?
         if(mSnake.checkFoodPoisoning(mBadApple.getLocation())){
 
-            // This reminds me of Edge of Tomorrow.
-            // One day the apple will be ready
-
             mBadApple.spawn();
 
-            isBadAppleOnScreen = true;
-            badAppleStartTime = System.currentTimeMillis();
+            // starts counting how long apple is on screen
+            mBadApple.isOnScreen();
 
             // Subtract from score
             mGameState.decreaseScore();
 
             // Play a sound
-
             mSound.badAppleSound();
         }
 
-        if(mSnake.checkExplosion(mBombApple.getLocation())){
+        // Did the snake die? or did it collide with bomb apple?
+        if (mSnake.detectDeath(mGameState.getScore()) || mSnake.checkExplosion(mBombApple.getLocation())) {
             mSound.deathSound();
             mGameState.endGame();
         }
 
-
-        // Check if it's time to respawn the bad apple
-        if (isBadAppleOnScreen && (System.currentTimeMillis() - badAppleStartTime >= BAD_APPLE_DURATION)) {
-            mBadApple.spawn();
-            isBadAppleOnScreen = true;
-            badAppleStartTime = System.currentTimeMillis();
-        }
-
-        if (isBombAppleOnScreen && (System.currentTimeMillis() - bombAppleStartTime >= BOMB_APPLE_DURATION)) {
-            mBombApple.spawn();
-            isBombAppleOnScreen = true;
-            bombAppleStartTime = System.currentTimeMillis();
+        // check if it's time to respawn all obstacles
+        for (IObstacle o : obstacles){
+            if(o.getOnScreen() && (System.currentTimeMillis() - o.getTime() >= o.getDuration())) {
+                o.spawn();
+                o.isOnScreen();
+            }
         }
 
         // is it time to increase difficulty?
@@ -264,14 +261,6 @@ class SnakeGame extends SurfaceView implements Runnable, SnakeGameBroadcaster {
 
             // reset start time
             startTime = SystemClock.elapsedRealtime();
-        }
-
-        // Did the snake die?
-        if (mSnake.detectDeath(mGameState.getScore())) {
-            // Pause the game ready to start again
-            mSound.deathSound();
-
-            mGameState.endGame();
         }
 
     }
@@ -290,11 +279,10 @@ class SnakeGame extends SurfaceView implements Runnable, SnakeGameBroadcaster {
             mPaint.setColor(Color.argb(255, 255, 255, 255));
             mPaint.setTextSize(120);
 
-            // Draw the apple, bad apple and the snake
-            mApple.draw(mCanvas, mPaint);
-            mBadApple.draw(mCanvas, mPaint);
-            mBombApple.draw(mCanvas, mPaint);
-            mSnake.draw(mCanvas, mPaint);
+            // Draw all game objects
+            for(IDrawable d : gameObjects){
+                d.draw(mCanvas, mPaint);
+            }
 
             if(!mGameState.getPaused()) {
                 // Draw the score

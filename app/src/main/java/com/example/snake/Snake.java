@@ -8,8 +8,6 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.view.MotionEvent;
-
-
 import java.util.ArrayList;
 
 
@@ -170,6 +168,11 @@ class Snake implements IDrawable {
         // Has the snake died?
         boolean dead = false;
 
+        // if snake eats bad apple with no length
+        if(!(segmentLocations.size() >= 1)){
+            return true;
+        }
+
         // Hit any of the screen edges
         if (segmentLocations.get(0).x == -1 ||
                 segmentLocations.get(0).x > mMoveRange.x ||
@@ -178,6 +181,8 @@ class Snake implements IDrawable {
 
             dead = true;
         }
+
+        // if score is low
         if(mScore == -1){
             dead = true;
         }
@@ -213,7 +218,7 @@ class Snake implements IDrawable {
     boolean checkFoodPoisoning(Point l) {
         //Similar to check dinner, but for bad apples
         //Using checkDinner for bad apples does subtract score, but still adds length, this will fix that.
-        //if (snakeXs[0] == l.x && snakeYs[0] == l.y) {
+
         if (segmentLocations.get(0).x == l.x &&
                 segmentLocations.get(0).y == l.y) {
             //Removes the added segment when eating Bad Apple
