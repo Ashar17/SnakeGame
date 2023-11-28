@@ -223,6 +223,13 @@ class Snake implements IDrawable {
         return false;
     }
 
+    boolean checkExplosion(Point l) {
+        if (segmentLocations.get(0).x == l.x && segmentLocations.get(0).y == l.y) {
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public void draw(Canvas canvas, Paint paint) {
 

@@ -2903,6 +2903,7 @@ int drawable avd_hide_password 0x7f070079
 int drawable avd_show_password 0x7f07007a
 int drawable badapple 0x7f07007b
 int drawable body 0x7f07007c
+int drawable bombapple 0x7f0700e4
 int drawable btn_checkbox_checked_mtrl 0x7f07007d
 int drawable btn_checkbox_checked_to_unchecked_mtrl_animation 0x7f07007e
 int drawable btn_checkbox_unchecked_mtrl 0x7f07007f

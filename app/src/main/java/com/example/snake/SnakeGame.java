@@ -41,10 +41,14 @@ class SnakeGame extends SurfaceView implements Runnable, SnakeGameBroadcaster {
     private Snake mSnake;
     // And an apple
     private Apple mApple;
-
+    //Add a Bomb Apple
+    private BombApple mBombApple;
     //add the new object bad apple
     private BadApple mBadApple;
     private boolean isBadAppleOnScreen = false;
+    private boolean isBombAppleOnScreen = false;
+    private long bombAppleStartTime;
+    private final long BOMB_APPLE_DURATION = 5000;
     private long badAppleStartTime;
     private final long BAD_APPLE_DURATION = 5000; // 5 seconds in milliseconds
 
@@ -79,6 +83,9 @@ class SnakeGame extends SurfaceView implements Runnable, SnakeGameBroadcaster {
                         mNumBlocksHigh),
                 blockSize);
 
+        //Call Constructor of Bomb Apple
+        mBombApple = new BombApple(context, new Point(NUM_BLOCKS_WIDE, mNumBlocksHigh), blockSize);
+
 
         //call the constructor of the newly created bad apple
         mBadApple = new BadApple(context, new Point(NUM_BLOCKS_WIDE,
@@ -111,6 +118,10 @@ class SnakeGame extends SurfaceView implements Runnable, SnakeGameBroadcaster {
         mBadApple.spawn();
         isBadAppleOnScreen = true;
         badAppleStartTime = System.currentTimeMillis();
+
+        mBombApple.spawn();
+        isBombAppleOnScreen = true;
+        bombAppleStartTime = System.currentTimeMillis();
 
         // Resets the Score and changes state variables
         mGameState.startNewGame();
@@ -202,12 +213,23 @@ class SnakeGame extends SurfaceView implements Runnable, SnakeGameBroadcaster {
             mSound.badAppleSound();
         }
 
+        if(mSnake.checkExplosion(mBombApple.getLocation())){
+            mSound.deathSound();
+            mGameState.endGame();
+        }
+
 
         // Check if it's time to respawn the bad apple
         if (isBadAppleOnScreen && (System.currentTimeMillis() - badAppleStartTime >= BAD_APPLE_DURATION)) {
             mBadApple.spawn();
             isBadAppleOnScreen = true;
             badAppleStartTime = System.currentTimeMillis();
+        }
+
+        if (isBombAppleOnScreen && (System.currentTimeMillis() - bombAppleStartTime >= BOMB_APPLE_DURATION)) {
+            mBombApple.spawn();
+            isBombAppleOnScreen = true;
+            bombAppleStartTime = System.currentTimeMillis();
         }
 
         // Did the snake die?
@@ -237,6 +259,7 @@ class SnakeGame extends SurfaceView implements Runnable, SnakeGameBroadcaster {
             // Draw the apple, bad apple and the snake
             mApple.draw(mCanvas, mPaint);
             mBadApple.draw(mCanvas, mPaint);
+            mBombApple.draw(mCanvas, mPaint);
             mSnake.draw(mCanvas, mPaint);
 
             if(!mGameState.getPaused()) {
