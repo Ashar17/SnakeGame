@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
+import android.os.SystemClock;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -122,6 +123,7 @@ class SnakeGame extends SurfaceView implements Runnable, SnakeGameBroadcaster {
         isBadAppleOnScreen = true;
         badAppleStartTime = System.currentTimeMillis();
 
+        // Initialize bomb apple state and timing
         mBombApple.spawn();
         isBombAppleOnScreen = true;
         bombAppleStartTime = System.currentTimeMillis();
