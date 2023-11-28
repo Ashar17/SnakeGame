@@ -170,9 +170,6 @@ class Snake implements IDrawable {
         // Has the snake died?
         boolean dead = false;
 
-        if(!(segmentLocations.size() >= 1)){
-            return true;
-        }
         // Hit any of the screen edges
         if (segmentLocations.get(0).x == -1 ||
                 segmentLocations.get(0).x > mMoveRange.x ||
@@ -224,6 +221,13 @@ class Snake implements IDrawable {
             return true;
         } else if (segmentLocations.get(0).x == l.x &&
                 segmentLocations.get(0).y == l.y && segmentLocations.size() == 1){
+            return true;
+        }
+        return false;
+    }
+
+    boolean checkExplosion(Point l) {
+        if (segmentLocations.get(0).x == l.x && segmentLocations.get(0).y == l.y){
             return true;
         }
         return false;

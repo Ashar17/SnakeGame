@@ -5,6 +5,7 @@ color white
 drawable apple
 drawable badapple
 drawable body
+drawable bombapple
 drawable head
 drawable head1
 drawable ic_launcher_background
