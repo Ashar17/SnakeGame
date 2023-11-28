@@ -53,6 +53,9 @@ class SnakeGame extends SurfaceView implements Runnable, SnakeGameBroadcaster {
     private final long BAD_APPLE_DURATION = 5000; // 5 seconds in milliseconds
 
     long TARGET_FPS = 10;
+    // used to calculate elapsed time
+    long startTime, elapsedMilliSeconds;
+    double elapsedSeconds;
 
 
     // This is the constructor method that gets called
@@ -128,6 +131,9 @@ class SnakeGame extends SurfaceView implements Runnable, SnakeGameBroadcaster {
 
         // Setup mNextFrameTime so an update can triggered
         mNextFrameTime = System.currentTimeMillis();
+
+        // save game start time
+        startTime = SystemClock.elapsedRealtime();
     }
 
 
@@ -168,6 +174,19 @@ class SnakeGame extends SurfaceView implements Runnable, SnakeGameBroadcaster {
             return true;
         }
 
+        return false;
+    }
+
+    // check if it's time for difficulty to increase
+    public boolean checkTime(){
+        // calculate time
+        elapsedMilliSeconds = SystemClock.elapsedRealtime() - startTime;
+        elapsedSeconds = elapsedMilliSeconds / 1000.0;
+
+        // if it's been twenty seconds, then increase difficulty
+        if (elapsedSeconds > 20){
+            return true;
+        }
         return false;
     }
 
@@ -230,6 +249,19 @@ class SnakeGame extends SurfaceView implements Runnable, SnakeGameBroadcaster {
             mBombApple.spawn();
             isBombAppleOnScreen = true;
             bombAppleStartTime = System.currentTimeMillis();
+        }
+
+        // is it time to increase difficulty?
+        if(checkTime()){
+            // TO DO: increase speed of snake
+
+            // TO DO: spawn more apples or obstacles
+
+
+            Log.i("snakeGame", Double.toString(elapsedSeconds));
+
+            // reset start time
+            startTime = SystemClock.elapsedRealtime();
         }
 
         // Did the snake die?

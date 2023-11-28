@@ -219,12 +219,8 @@ class Snake implements IDrawable {
             //Removes the added segment when eating Bad Apple
             segmentLocations.remove(segmentLocations.size() - 1);
             return true;
-        }
-        return false;
-    }
-
-    boolean checkExplosion(Point l) {
-        if (segmentLocations.get(0).x == l.x && segmentLocations.get(0).y == l.y) {
+        } else if (segmentLocations.get(0).x == l.x &&
+                segmentLocations.get(0).y == l.y && segmentLocations.size() == 1){
             return true;
         }
         return false;
