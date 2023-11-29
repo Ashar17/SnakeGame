@@ -3,8 +3,6 @@ package com.example.snake;
 import android.content.Context;
 import android.graphics.Point;
 
-import java.util.Random;
-
 class BadApple extends AbstractApple implements IObstacle {
 
     private boolean isBadAppleOnScreen = false;

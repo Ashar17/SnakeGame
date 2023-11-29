@@ -2,9 +2,10 @@ R_DEF: Internal format may change without notice
 local
 color black
 color white
-drawable apple
+drawable apple1
 drawable badapple
 drawable body
+drawable body1
 drawable bombapple
 drawable head
 drawable head1

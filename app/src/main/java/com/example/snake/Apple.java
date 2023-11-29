@@ -6,7 +6,7 @@ import android.graphics.Point;
 class Apple extends AbstractApple {
 
     Apple(Context context, Point sr, int s) {
-        super(context, sr, s, R.drawable.apple);
+        super(context, sr, s, R.drawable.apple1);
     }
 
 }
