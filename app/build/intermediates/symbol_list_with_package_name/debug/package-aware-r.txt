@@ -2899,11 +2899,12 @@ drawable abc_textfield_search_activated_mtrl_alpha
 drawable abc_textfield_search_default_mtrl_alpha
 drawable abc_textfield_search_material
 drawable abc_vector_test
-drawable apple
+drawable apple1
 drawable avd_hide_password
 drawable avd_show_password
 drawable badapple
 drawable body
+drawable body1
 drawable bombapple
 drawable btn_checkbox_checked_mtrl
 drawable btn_checkbox_checked_to_unchecked_mtrl_animation
