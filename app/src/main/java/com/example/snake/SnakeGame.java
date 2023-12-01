@@ -50,9 +50,9 @@ class SnakeGame extends SurfaceView implements Runnable, ISnakeGameBroadcaster {
     private ArrayList<IObstacle> obstacles;
     private ArrayList<IDrawable> gameObjects;
     long TARGET_FPS = 10;
-    // used to calculate elapsed time
-    long startTime, elapsedMilliSeconds;
-    double elapsedSeconds;
+    // used to calculate when to increase difficulty
+    final int checkpoint = 4;
+    int scoreIncrement = 4;
 
 
     // This is the constructor method that gets called
@@ -129,10 +129,10 @@ class SnakeGame extends SurfaceView implements Runnable, ISnakeGameBroadcaster {
         // Get the apple ready for dinner
         mApple.spawnApple();
 
-        for(IObstacle o : obstacles){
-            o.spawn();
-            o.isOnScreen();
-        }
+//        for(IObstacle o: obstacles){
+//            o.spawn();
+//            o.isOnScreen();
+//        }
 
         // Resets the Score and changes state variables
         mGameState.startNewGame();
@@ -140,8 +140,6 @@ class SnakeGame extends SurfaceView implements Runnable, ISnakeGameBroadcaster {
         // Setup mNextFrameTime so an update can triggered
         mNextFrameTime = System.currentTimeMillis();
 
-        // save game start time
-        startTime = SystemClock.elapsedRealtime();
     }
 
 
@@ -186,13 +184,10 @@ class SnakeGame extends SurfaceView implements Runnable, ISnakeGameBroadcaster {
     }
 
     // check if it's time for difficulty to increase
-    public boolean checkTime(){
-        // calculate time
-        elapsedMilliSeconds = SystemClock.elapsedRealtime() - startTime;
-        elapsedSeconds = elapsedMilliSeconds / 1000.0;
-
-        // if it's been twenty seconds, then increase difficulty
-        if (elapsedSeconds > 20){
+    public boolean checkScore(){
+        if(mGameState.getScore() == scoreIncrement){
+            // update increment
+            scoreIncrement += checkpoint;
             return true;
         }
         return false;
@@ -251,18 +246,21 @@ class SnakeGame extends SurfaceView implements Runnable, ISnakeGameBroadcaster {
         }
 
         // is it time to increase difficulty?
-        if(checkTime()){
-            // TO DO: increase speed of snake
-
-            // TO DO: spawn more apples or obstacles
-
-
-            Log.i("snakeGame", Double.toString(elapsedSeconds));
-
-            // reset start time
-            startTime = SystemClock.elapsedRealtime();
+        if(checkScore()){
+            // spawn more apples depending on score
+            switch(mGameState.getScore()){
+                case checkpoint:
+                    mBadApple.spawn();
+                    mBadApple.isOnScreen();
+                    break;
+                case checkpoint * 2:
+                    mBombApple.spawn();
+                    mBombApple.isOnScreen();
+                    break;
+                default:
+                    break;
+            }
         }
-
     }
 
 
