@@ -129,10 +129,13 @@ class SnakeGame extends SurfaceView implements Runnable, ISnakeGameBroadcaster {
         // Get the apple ready for dinner
         mApple.spawnApple();
 
-//        for(IObstacle o: obstacles){
-//            o.spawn();
-//            o.isOnScreen();
-//        }
+        // place obstacles off screen
+        mBadApple.offScreen();
+        mBombApple.offScreen();
+        for(IObstacle o: obstacles){
+            o.isNotOnScreen();
+        }
+        scoreIncrement = 4;
 
         // Resets the Score and changes state variables
         mGameState.startNewGame();
