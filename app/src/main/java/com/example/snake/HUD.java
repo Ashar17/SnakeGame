@@ -5,16 +5,20 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 import java.util.ArrayList;
 
 public class HUD implements IDrawable {
     // lets the HUD class hold an instance of itself
+    Context context;
     private static HUD mHUD;
     private int mTextFormatting;
     private int mHudFormatting;
     private int mScreenHeight;
     private int mScreenWidth;
+    private Bitmap bitmapScreen;
     private GameState gs;
     private ArrayList<Rect> controls, gameOverControls;
     // declare array list index
@@ -23,12 +27,19 @@ public class HUD implements IDrawable {
     static int RETURNBUTTON = 1; // index for game over screen
 
     // making the constructor private ensures only the HUD class can instantiate itself (singleton)
-    private HUD(Point size, GameState gs){
+    private HUD(Context context, Point size, GameState gs){
+        this.context = context;
         mScreenHeight = size.y;
         mScreenWidth = size.x;
         mTextFormatting = size.x / 50;
         mHudFormatting = size.x / 30;
         this.gs = gs;
+
+        // prep artwork
+        // Load the image to the bitmap
+        bitmapScreen = BitmapFactory.decodeResource(context.getResources(), R.drawable.start_screen);
+        // Resize the bitmap
+        bitmapScreen = Bitmap.createScaledBitmap(bitmapScreen, mScreenWidth, mScreenHeight, false);
 
         prepareControls();
     }
@@ -36,7 +47,7 @@ public class HUD implements IDrawable {
     // allows other classes to access this class
     static HUD getInstance(Context context, Point size, GameState gs){
         if(mHUD == null) {
-            mHUD = new HUD(size, gs);
+            mHUD = new HUD(context, size, gs);
         }
         return mHUD;
     }
@@ -74,8 +85,7 @@ public class HUD implements IDrawable {
 
         // if game just opened (start screen)
         if(gs.getPaused() && gs.getGameStart()){
-            paint.setTextSize(mTextFormatting * 5);
-            canvas.drawText("PRESS PLAY", mScreenWidth /5, mScreenHeight / 2, paint);
+            canvas.drawBitmap(bitmapScreen, 0, 0, paint);
         }
         // if game is paused
         if(gs.getPaused() && !gs.getGameOver() && !gs.getGameStart()){
@@ -135,6 +145,7 @@ public class HUD implements IDrawable {
         //display return button text
         canvas.drawText("Return", (mScreenWidth / 5) * 3, ((mScreenHeight / 5) * 4) - 50, paint);
     }
+
     ArrayList<Rect> getControls(){
         return controls;
     }
