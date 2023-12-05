@@ -47,7 +47,7 @@ abstract class AbstractApple implements IDrawable {
         location.y = random.nextInt(mSpawnRange.y - 1) + 1;
     }
 
-    void offScreen(){
+    void setOffScreen(){
         location.x = -10;
     }
 

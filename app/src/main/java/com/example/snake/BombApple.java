@@ -21,6 +21,11 @@ class BombApple extends AbstractApple implements IObstacle {
         bombAppleStartTime = System.currentTimeMillis();
     }
 
+    @Override
+    public void offScreen() {
+        setOffScreen();
+    }
+
     public void isNotOnScreen(){
         isBombAppleOnScreen = false;
     }

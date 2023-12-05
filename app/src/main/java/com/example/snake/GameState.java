@@ -11,7 +11,7 @@ public class GameState {
     private static volatile boolean mPlaying = false;
     private static volatile boolean mGameOver = false;
     private static volatile boolean mGameStart = true;
-
+    private static volatile boolean mPowerUp = false;
     private static final int maxHighScore = 3;
     private int mScore;
 
@@ -95,6 +95,12 @@ public class GameState {
     boolean getIsPlaying(){
         return mPlaying;
     }
+    void eatenPowerUp(){
+        mPowerUp = true;
+    }
+    void noPowerUp(){
+        mPowerUp = false;
+    }
     void pause(){
         mPaused = true;
     }
@@ -122,6 +128,9 @@ public class GameState {
     }
     boolean getGameStart() {
         return mGameStart;
+    }
+    boolean getPowerUp(){
+        return mPowerUp;
     }
 
 }

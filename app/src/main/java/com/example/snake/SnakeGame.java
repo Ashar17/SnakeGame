@@ -47,6 +47,8 @@ class SnakeGame extends SurfaceView implements Runnable, ISnakeGameBroadcaster {
     private BombApple mBombApple;
     //add the new object bad apple
     private BadApple mBadApple;
+    // add power up apple
+    private PowerApple mPowerApple;
     private ArrayList<IObstacle> obstacles;
     private ArrayList<IDrawable> gameObjects;
     long TARGET_FPS = 10;
@@ -72,38 +74,34 @@ class SnakeGame extends SurfaceView implements Runnable, ISnakeGameBroadcaster {
         // Initialize Sound Object
         mSound = new GameSound(context);
 
-
         // Initialize the drawing objects
         mSurfaceHolder = getHolder();
         mPaint = new Paint();
 
         // Call the constructors of our two game objects
-        mApple = new Apple(context,
-                new Point(NUM_BLOCKS_WIDE,
-                        mNumBlocksHigh),
-                blockSize);
+        mApple = new Apple(context, new Point(NUM_BLOCKS_WIDE,
+                        mNumBlocksHigh), blockSize);
 
         //Call Constructor of Bomb Apple
-        mBombApple = new BombApple(context,
-                new Point(NUM_BLOCKS_WIDE,
-                        mNumBlocksHigh),
-                blockSize);
-
+        mBombApple = new BombApple(context, new Point(NUM_BLOCKS_WIDE,
+                        mNumBlocksHigh), blockSize);
 
         //call the constructor of the newly created bad apple
         mBadApple = new BadApple(context, new Point(NUM_BLOCKS_WIDE,
-                mNumBlocksHigh),
-                blockSize);
+                mNumBlocksHigh), blockSize);
 
-        mSnake = new Snake(context,
-                new Point(NUM_BLOCKS_WIDE,
-                        mNumBlocksHigh),
-                blockSize);
+        // call constructor of power up apple
+        mPowerApple = new PowerApple(context, new Point(NUM_BLOCKS_WIDE,
+                mNumBlocksHigh), blockSize);
+
+        mSnake = new Snake(context, new Point(NUM_BLOCKS_WIDE,
+                        mNumBlocksHigh), blockSize);
 
         // put obstacles in array list
         obstacles = new ArrayList<>();
         obstacles.add(mBadApple);
         obstacles.add(mBombApple);
+        obstacles.add(mPowerApple);
 
         // put game objects into array list
         gameObjects = new ArrayList<>();
@@ -111,6 +109,7 @@ class SnakeGame extends SurfaceView implements Runnable, ISnakeGameBroadcaster {
         gameObjects.add(mApple);
         gameObjects.add(mBadApple);
         gameObjects.add(mBombApple);
+        gameObjects.add(mPowerApple);
 
     }
 
@@ -130,11 +129,11 @@ class SnakeGame extends SurfaceView implements Runnable, ISnakeGameBroadcaster {
         mApple.spawnApple();
 
         // place obstacles off screen
-        mBadApple.offScreen();
-        mBombApple.offScreen();
         for(IObstacle o: obstacles){
+            o.offScreen();
             o.isNotOnScreen();
         }
+        // reset variable
         scoreIncrement = 4;
 
         // Resets the Score and changes state variables
@@ -205,11 +204,7 @@ class SnakeGame extends SurfaceView implements Runnable, ISnakeGameBroadcaster {
 
         // Did the head of the snake eat the apple?
         if(mSnake.checkDinner(mApple.getLocation())){
-//            long updatedFps = TARGET_FPS *10;
-//            updateRequired(updatedFps);
 
-            // This reminds me of Edge of Tomorrow.
-            // One day the apple will be ready!
             mApple.spawnApple();
 
             // Add to Score
@@ -219,25 +214,48 @@ class SnakeGame extends SurfaceView implements Runnable, ISnakeGameBroadcaster {
             mSound.eatAppleSound();
         }
 
-        // Did the head of the snake eat the bad apple?
-        if(mSnake.checkFoodPoisoning(mBadApple.getLocation())){
+        // if the snake has a power up, ignore these if blocks
+        if(!mGameState.getPowerUp()) {
+            // Did the head of the snake eat the bad apple?
+            if (mSnake.checkFoodPoisoning(mBadApple.getLocation())) {
 
-            mBadApple.spawn();
+                mBadApple.spawn();
 
-            // starts counting how long apple is on screen
-            mBadApple.isOnScreen();
+                // starts counting how long apple is on screen
+                mBadApple.isOnScreen();
 
-            // Subtract from score
-            mGameState.decreaseScore();
+                // Subtract from score
+                mGameState.decreaseScore();
 
-            // Play a sound
-            mSound.badAppleSound();
+                // Play a sound
+                mSound.badAppleSound();
+            }
+
+            // Did the snake die? or did it collide with bomb apple?
+            if (mSnake.detectDeath(mGameState.getScore()) ||
+                    (mSnake.checkExplosion(mBombApple.getLocation()))) {
+                mSound.deathSound();
+                mGameState.endGame();
+            }
         }
 
-        // Did the snake die? or did it collide with bomb apple?
-        if (mSnake.detectDeath(mGameState.getScore()) || mSnake.checkExplosion(mBombApple.getLocation())) {
-            mSound.deathSound();
-            mGameState.endGame();
+        // Did the head of the snake eat the power up?
+        // note: explosion logic is the same needed for power up logic
+        if (mSnake.checkExplosion(mPowerApple.getLocation())) {
+            // move power up off screen
+            mPowerApple.offScreen();
+
+            // allows player to be invincible for specified time
+            mPowerApple.eatenPowerUp();
+            mGameState.eatenPowerUp();
+
+            // Play a sound
+            mSound.eatAppleSound();
+        }
+
+        // check if power up buff is over
+        if (System.currentTimeMillis() - mPowerApple.getEatenTime() >= mPowerApple.getPowerUpDuration()){
+            mGameState.noPowerUp();
         }
 
         // check if it's time to respawn all obstacles
@@ -260,6 +278,10 @@ class SnakeGame extends SurfaceView implements Runnable, ISnakeGameBroadcaster {
                     mBombApple.spawn();
                     mBombApple.isOnScreen();
                     break;
+                case checkpoint * 3:
+                    mPowerApple.spawn();
+                    mPowerApple.isOnScreen();
+                    break;
                 default:
                     break;
             }
@@ -274,7 +296,7 @@ class SnakeGame extends SurfaceView implements Runnable, ISnakeGameBroadcaster {
             mCanvas = mSurfaceHolder.lockCanvas();
 
             // Fill the screen with a color
-            mCanvas.drawColor(Color.argb(255, 26, 128, 182));
+            mCanvas.drawColor(Color.argb(255, 120, 14, 0));
 
             // Set the size and color of the mPaint for the text
             mPaint.setColor(Color.argb(255, 255, 255, 255));
