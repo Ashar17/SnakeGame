@@ -107,11 +107,17 @@ public class HUD implements IDrawable {
     }
 
     protected void drawControls(Canvas canvas, Paint paint){
-        paint.setColor(Color.argb(255,255,255,255));
+        paint.setColor(Color.argb(130,255,255,255));
 
         for(Rect r : controls){
             canvas.drawRect(r.left, r.top, r.right, r.bottom, paint);
         }
+
+        paint.setColor(Color.argb(255,0,0,0));
+        paint.setTextSize((float) (mHudFormatting / 1.40));
+        //display pause button text
+        canvas.drawText("Pause", mScreenWidth - (mScreenWidth / 90) - (mScreenWidth / 14),
+                (mScreenWidth / 90) + (mScreenHeight / 14), paint);
     }
 
     protected void drawGameOverScreen(Canvas canvas, Paint paint){
