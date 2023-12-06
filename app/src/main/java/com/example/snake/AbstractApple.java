@@ -47,6 +47,10 @@ abstract class AbstractApple implements IDrawable {
         location.y = random.nextInt(mSpawnRange.y - 1) + 1;
     }
 
+    void setOffScreen(){
+        location.x = -10;
+    }
+
     // Let SnakeGame know where the apple is
     // SnakeGame can share this with the snake
     Point getLocation(){

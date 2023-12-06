@@ -21,6 +21,11 @@ class BadApple extends AbstractApple implements IObstacle {
         badAppleStartTime = System.currentTimeMillis();
     }
 
+    @Override
+    public void offScreen() {
+        setOffScreen();
+    }
+
     public void isNotOnScreen(){
         isBadAppleOnScreen = false;
     }

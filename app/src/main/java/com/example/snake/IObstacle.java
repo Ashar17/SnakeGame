@@ -5,6 +5,7 @@ public interface IObstacle {
     void isOnScreen();
     void isNotOnScreen();
     boolean getOnScreen();
+    void offScreen();
     long getTime();
     long getDuration();
 }

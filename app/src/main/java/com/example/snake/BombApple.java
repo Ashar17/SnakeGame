@@ -7,7 +7,7 @@ class BombApple extends AbstractApple implements IObstacle {
 
     private boolean isBombAppleOnScreen = false;
     private long bombAppleStartTime;
-    private final long BOMB_APPLE_DURATION = 10000;
+    private final long BOMB_APPLE_DURATION = 9000;
 
     BombApple(Context context, Point sr, int s) {
         super(context, sr, s, R.drawable.bombapple);
@@ -19,6 +19,11 @@ class BombApple extends AbstractApple implements IObstacle {
     public void isOnScreen(){
         isBombAppleOnScreen = true;
         bombAppleStartTime = System.currentTimeMillis();
+    }
+
+    @Override
+    public void offScreen() {
+        setOffScreen();
     }
 
     public void isNotOnScreen(){
