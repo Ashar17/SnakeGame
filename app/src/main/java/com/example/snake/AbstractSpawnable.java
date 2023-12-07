@@ -9,7 +9,7 @@ import android.graphics.Point;
 
 import java.util.Random;
 
-abstract class AbstractApple implements IDrawable {
+abstract class AbstractSpawnable implements IDrawable {
 
     // The location of the apple on the grid
     // Not in pixels
@@ -24,7 +24,7 @@ abstract class AbstractApple implements IDrawable {
     private Bitmap mBitmapApple;
 
     // Common constructor for subclasses
-    AbstractApple(Context context, Point sr, int s, int drawableResource){
+    AbstractSpawnable(Context context, Point sr, int s, int drawableResource){
         // Make a note of the passed in spawn range
         mSpawnRange = sr;
         // Make a note of the size of an apple

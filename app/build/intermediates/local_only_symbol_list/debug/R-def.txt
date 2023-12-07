@@ -4,13 +4,13 @@ color black
 color white
 drawable apple1
 drawable badapple
-drawable body
 drawable body1
-drawable bombapple
-drawable head
+drawable bomb
 drawable head1
 drawable ic_launcher_background
 drawable ic_launcher_foreground
+drawable powerstar
+drawable start_screen
 layout activity_main
 mipmap ic_launcher
 mipmap ic_launcher_round

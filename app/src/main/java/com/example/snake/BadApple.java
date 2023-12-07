@@ -3,7 +3,7 @@ package com.example.snake;
 import android.content.Context;
 import android.graphics.Point;
 
-class BadApple extends AbstractApple implements IObstacle {
+class BadApple extends AbstractSpawnable implements IObstacle {
 
     private boolean isBadAppleOnScreen = false;
     private long badAppleStartTime;

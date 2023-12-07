@@ -4,6 +4,10 @@
         "source": "com.example.snake.app-main-30:/mipmap-mdpi/ic_launcher.webp"
     },
     {
+        "merged": "com.example.snake.app-merged_res-28:/drawable_bomb.png.flat",
+        "source": "com.example.snake.app-main-30:/drawable/bomb.png"
+    },
+    {
         "merged": "com.example.snake.app-merged_res-28:/mipmap-hdpi_ic_launcher_round.webp.flat",
         "source": "com.example.snake.app-main-30:/mipmap-hdpi/ic_launcher_round.webp"
     },
@@ -12,12 +16,20 @@
         "source": "com.example.snake.app-main-30:/mipmap-xxxhdpi/ic_launcher_round.webp"
     },
     {
+        "merged": "com.example.snake.app-merged_res-28:/drawable_powerstar.png.flat",
+        "source": "com.example.snake.app-main-30:/drawable/powerstar.png"
+    },
+    {
         "merged": "com.example.snake.app-merged_res-28:/drawable_apple1.png.flat",
         "source": "com.example.snake.app-main-30:/drawable/apple1.png"
     },
     {
         "merged": "com.example.snake.app-merged_res-28:/xml_data_extraction_rules.xml.flat",
         "source": "com.example.snake.app-main-30:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "com.example.snake.app-merged_res-28:/drawable_start_screen.png.flat",
+        "source": "com.example.snake.app-main-30:/drawable/start_screen.png"
     },
     {
         "merged": "com.example.snake.app-merged_res-28:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
@@ -32,20 +44,12 @@
         "source": "com.example.snake.app-main-30:/mipmap-hdpi/ic_launcher.webp"
     },
     {
-        "merged": "com.example.snake.app-merged_res-28:/drawable_head.png.flat",
-        "source": "com.example.snake.app-main-30:/drawable/head.png"
-    },
-    {
         "merged": "com.example.snake.app-merged_res-28:/layout_activity_main.xml.flat",
         "source": "com.example.snake.app-main-30:/layout/activity_main.xml"
     },
     {
         "merged": "com.example.snake.app-merged_res-28:/drawable_head1.png.flat",
         "source": "com.example.snake.app-main-30:/drawable/head1.png"
-    },
-    {
-        "merged": "com.example.snake.app-merged_res-28:/drawable_body.png.flat",
-        "source": "com.example.snake.app-main-30:/drawable/body.png"
     },
     {
         "merged": "com.example.snake.app-merged_res-28:/drawable_badapple.png.flat",
@@ -82,10 +86,6 @@
     {
         "merged": "com.example.snake.app-merged_res-28:/mipmap-anydpi-v26_ic_launcher.xml.flat",
         "source": "com.example.snake.app-main-30:/mipmap-anydpi-v26/ic_launcher.xml"
-    },
-    {
-        "merged": "com.example.snake.app-merged_res-28:/drawable_bombapple.png.flat",
-        "source": "com.example.snake.app-main-30:/drawable/bombapple.png"
     },
     {
         "merged": "com.example.snake.app-merged_res-28:/drawable_body1.png.flat",

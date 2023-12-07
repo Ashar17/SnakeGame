@@ -5,13 +5,10 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
-import android.graphics.Rect;
-import android.os.SystemClock;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import java.util.ArrayList;
-import android.util.Log;
 
 class SnakeGame extends SurfaceView implements Runnable, ISnakeGameBroadcaster {
 
@@ -44,11 +41,11 @@ class SnakeGame extends SurfaceView implements Runnable, ISnakeGameBroadcaster {
     // And an apple
     private Apple mApple;
     //Add a Bomb Apple
-    private BombApple mBombApple;
+    private Bomb mBomb;
     //add the new object bad apple
     private BadApple mBadApple;
     // add power up apple
-    private PowerApple mPowerApple;
+    private PowerStar mPowerStar;
     private ArrayList<IObstacle> obstacles;
     private ArrayList<IDrawable> gameObjects;
     long TARGET_FPS = 10;
@@ -83,15 +80,15 @@ class SnakeGame extends SurfaceView implements Runnable, ISnakeGameBroadcaster {
                         mNumBlocksHigh), blockSize);
 
         //Call Constructor of Bomb Apple
-        mBombApple = new BombApple(context, new Point(NUM_BLOCKS_WIDE,
+        mBomb = new Bomb(context, new Point(NUM_BLOCKS_WIDE,
                         mNumBlocksHigh), blockSize);
 
         //call the constructor of the newly created bad apple
         mBadApple = new BadApple(context, new Point(NUM_BLOCKS_WIDE,
                 mNumBlocksHigh), blockSize);
 
-        // call constructor of power up apple
-        mPowerApple = new PowerApple(context, new Point(NUM_BLOCKS_WIDE,
+        // call constructor of power up star
+        mPowerStar = new PowerStar(context, new Point(NUM_BLOCKS_WIDE,
                 mNumBlocksHigh), blockSize);
 
         mSnake = new Snake(context, new Point(NUM_BLOCKS_WIDE,
@@ -100,16 +97,16 @@ class SnakeGame extends SurfaceView implements Runnable, ISnakeGameBroadcaster {
         // put obstacles in array list
         obstacles = new ArrayList<>();
         obstacles.add(mBadApple);
-        obstacles.add(mBombApple);
-        obstacles.add(mPowerApple);
+        obstacles.add(mBomb);
+        obstacles.add(mPowerStar);
 
         // put game objects into array list
         gameObjects = new ArrayList<>();
         gameObjects.add(mSnake);
         gameObjects.add(mApple);
         gameObjects.add(mBadApple);
-        gameObjects.add(mBombApple);
-        gameObjects.add(mPowerApple);
+        gameObjects.add(mBomb);
+        gameObjects.add(mPowerStar);
 
     }
 
@@ -233,7 +230,7 @@ class SnakeGame extends SurfaceView implements Runnable, ISnakeGameBroadcaster {
 
             // Did the snake die? or did it collide with bomb apple?
             if (mSnake.detectDeath(mGameState.getScore()) ||
-                    (mSnake.checkExplosion(mBombApple.getLocation()))) {
+                    (mSnake.checkExplosion(mBomb.getLocation()))) {
                 mSound.deathSound();
                 mGameState.endGame();
             }
@@ -241,12 +238,12 @@ class SnakeGame extends SurfaceView implements Runnable, ISnakeGameBroadcaster {
 
         // Did the head of the snake eat the power up?
         // note: explosion logic is the same needed for power up logic
-        if (mSnake.checkExplosion(mPowerApple.getLocation())) {
+        if (mSnake.checkExplosion(mPowerStar.getLocation())) {
             // move power up off screen
-            mPowerApple.offScreen();
+            mPowerStar.offScreen();
 
             // allows player to be invincible for specified time
-            mPowerApple.eatenPowerUp();
+            mPowerStar.eatenPowerUp();
             mGameState.eatenPowerUp();
 
             // Play a sound
@@ -254,7 +251,7 @@ class SnakeGame extends SurfaceView implements Runnable, ISnakeGameBroadcaster {
         }
 
         // check if power up buff is over
-        if (System.currentTimeMillis() - mPowerApple.getEatenTime() >= mPowerApple.getPowerUpDuration()){
+        if (System.currentTimeMillis() - mPowerStar.getEatenTime() >= mPowerStar.getPowerUpDuration()){
             mGameState.noPowerUp();
         }
 
@@ -275,12 +272,12 @@ class SnakeGame extends SurfaceView implements Runnable, ISnakeGameBroadcaster {
                     mBadApple.isOnScreen();
                     break;
                 case checkpoint * 2:
-                    mBombApple.spawn();
-                    mBombApple.isOnScreen();
+                    mBomb.spawn();
+                    mBomb.isOnScreen();
                     break;
                 case checkpoint * 3:
-                    mPowerApple.spawn();
-                    mPowerApple.isOnScreen();
+                    mPowerStar.spawn();
+                    mPowerStar.isOnScreen();
                     break;
                 default:
                     break;
