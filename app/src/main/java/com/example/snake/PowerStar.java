@@ -3,7 +3,7 @@ package com.example.snake;
 import android.content.Context;
 import android.graphics.Point;
 
-class PowerApple extends AbstractApple implements IObstacle {
+class PowerStar extends AbstractSpawnable implements IObstacle {
 
     private boolean isPowerAppleOnScreen = false;
     private long powerAppleStartTime;
@@ -11,8 +11,8 @@ class PowerApple extends AbstractApple implements IObstacle {
     private final long POWER_APPLE_DURATION = 8000; // 8 seconds in milliseconds
     private final long RESPAWN_DURATION = 12000;
 
-    PowerApple(Context context, Point sr, int s) {
-        super(context, sr, s, R.drawable.powerapple);
+    PowerStar(Context context, Point sr, int s) {
+        super(context, sr, s, R.drawable.powerstar);
     }
     public void spawn(){
         spawnApple();

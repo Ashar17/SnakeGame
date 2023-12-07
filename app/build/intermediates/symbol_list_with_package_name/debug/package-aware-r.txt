@@ -2903,9 +2903,8 @@ drawable apple1
 drawable avd_hide_password
 drawable avd_show_password
 drawable badapple
-drawable body
 drawable body1
-drawable bombapple
+drawable bomb
 drawable btn_checkbox_checked_mtrl
 drawable btn_checkbox_checked_to_unchecked_mtrl_animation
 drawable btn_checkbox_unchecked_mtrl
@@ -2919,7 +2918,6 @@ drawable design_ic_visibility
 drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
-drawable head
 drawable head1
 drawable ic_arrow_back_black_24
 drawable ic_clear_black_24
@@ -3006,6 +3004,8 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
+drawable powerstar
+drawable start_screen
 drawable test_level_drawable
 drawable tooltip_frame_dark
 drawable tooltip_frame_light

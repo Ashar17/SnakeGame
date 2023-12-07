@@ -330,8 +330,4 @@ class Snake implements IDrawable {
             }
         }
     }
-
-     ArrayList<Point> getSegmentLocations(){
-        return segmentLocations;
-    }
 }
