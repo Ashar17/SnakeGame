@@ -69,18 +69,12 @@ public class GameSound {
     }
 
     void startBackgroundMusic() {
-        mBackground = mSP.play(mBackground, 1, 1, 0, -1, 1); // Use -1 for looping
+        mSP.play(mBackground, 1, 1, 0, -1, 1); // Use -1 for looping
     }
 
     void stopBackgroundMusic() {
-        mSP.pause(mBackground);
+        mSP.autoPause();
     }
-
-    void resumeBackgroundMusic(){
-        mSP.resume(mBackground);
-    }
-
-
 }
 
 

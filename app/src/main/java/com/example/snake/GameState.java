@@ -62,6 +62,11 @@ public class GameState {
             // Save high scores
             saveHighScores();
         }
+
+        if (mIsBackgroundMusicPlaying) {
+            mSound.stopBackgroundMusic();
+            mIsBackgroundMusicPlaying = false;
+        }
     }
 
     private void saveHighScores() {
@@ -90,7 +95,7 @@ public class GameState {
     }
     void startPlaying(){
         mPlaying = true;
-//        mSound.startBackgroundMusic();
+        mSound.startBackgroundMusic();
 //        mIsBackgroundMusicPlaying = true;
     }
     boolean getIsPlaying(){
