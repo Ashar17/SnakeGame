@@ -95,10 +95,8 @@ public class GameState {
     }
     void startPlaying(){
         mPlaying = true;
-        if (mIsBackgroundMusicPlaying) {
-            mSound.startBackgroundMusic();
-            mIsBackgroundMusicPlaying = true;
-        }
+        mSound.startBackgroundMusic();
+//        mIsBackgroundMusicPlaying = true;
     }
     boolean getIsPlaying(){
         return mPlaying;

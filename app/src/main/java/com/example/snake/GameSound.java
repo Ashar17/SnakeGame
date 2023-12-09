@@ -1,73 +1,79 @@
 package com.example.snake;
 
 import android.content.res.AssetFileDescriptor;
+import android.content.res.AssetManager;
+import android.media.AudioAttributes;
+import android.media.AudioManager;
+import android.media.SoundPool;
+import android.os.Build;
 import android.content.Context;
 import java.io.IOException;
-import android.media.MediaPlayer;
 
 public class GameSound {
-    private MediaPlayer mMediaPlayer;
-    private Context mContext;
+    // Initialize Sound Variables
+    private SoundPool mSP;
+    private int mEatID;
+    private int mCrashID;
+    private int mHurtID;
+    private int mBackground;
+    private boolean mIsBackgroundMusicPlaying = false;
 
-    GameSound(Context context) {
-        mContext = context;
+    GameSound(Context context){
+
+        // Initialize the SoundPool upon creation of GameSound object
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            AudioAttributes audioAttributes = new AudioAttributes.Builder()
+                    .setUsage(AudioAttributes.USAGE_MEDIA)
+                    .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                    .build();
+
+            mSP = new SoundPool.Builder()
+                    .setMaxStreams(5)
+                    .setAudioAttributes(audioAttributes)
+                    .build();
+        } else {
+            mSP = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
+        }
+        try {
+            AssetManager assetManager = context.getAssets();
+            AssetFileDescriptor descriptor;
+
+            // Prepare the sounds in memory
+            descriptor = assetManager.openFd("get_apple.ogg");
+            mEatID = mSP.load(descriptor, 0);
+
+            descriptor = assetManager.openFd("snake_death.ogg");
+            mCrashID = mSP.load(descriptor, 0);
+
+            descriptor = assetManager.openFd("get_bad_apple.ogg");
+            mHurtID = mSP.load(descriptor, 0);
+
+            descriptor = assetManager.openFd("snake_music.mp3");
+            mBackground = mSP.load(descriptor, 0);
+
+        } catch (
+                IOException e) {
+            // Error
+        }
+
     }
 
     void eatAppleSound() {
-        playSound("get_apple.ogg");
+        mSP.play(mEatID, 1, 1, 0, 0, 1);
     }
-
-    void deathSound() {
-        playSound("snake_death.ogg");
+    void deathSound(){
+        mSP.play(mCrashID, 1, 1, 0, 0, 1);
     }
-
-    void badAppleSound() {
-        playSound("get_bad_apple.ogg");
+    void badAppleSound(){
+        mSP.play(mHurtID, 1, 1, 0, 0, 1);
     }
 
     void startBackgroundMusic() {
-        if (mMediaPlayer == null) {
-            try {
-                AssetFileDescriptor descriptor = mContext.getAssets().openFd("snake_music.mp3");
-                mMediaPlayer = new MediaPlayer();
-                mMediaPlayer.setDataSource(descriptor.getFileDescriptor(), descriptor.getStartOffset(), descriptor.getLength());
-                descriptor.close();
-
-                mMediaPlayer.setLooping(true);
-                mMediaPlayer.prepare();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        if (!mMediaPlayer.isPlaying()) {
-            //mMediaPlayer.setVolume(1f, 1f);  // Set volume before starting
-            mMediaPlayer.start();
-        }
+        mSP.play(mBackground, 1, 1, 0, -1, 1); // Use -1 for looping
     }
 
     void stopBackgroundMusic() {
-        if (mMediaPlayer != null && mMediaPlayer.isPlaying()) {
-            mMediaPlayer.pause();
-        }
-    }
-
-    private void playSound(String fileName) {
-        if (mMediaPlayer == null) {
-            mMediaPlayer = new MediaPlayer();
-        }
-
-        try {
-            mMediaPlayer.reset();
-            AssetFileDescriptor descriptor = mContext.getAssets().openFd(fileName);
-            mMediaPlayer.setDataSource(descriptor.getFileDescriptor(), descriptor.getStartOffset(), descriptor.getLength());
-            descriptor.close();
-
-            mMediaPlayer.prepare();
-            mMediaPlayer.start();
-        } catch (IOException | IllegalStateException e) {
-            // Handle exceptions
-        }
+        mSP.autoPause();
     }
 }
 
