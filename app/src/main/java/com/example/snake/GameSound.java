@@ -15,12 +15,10 @@ public class GameSound {
     private int mEatID;
     private int mCrashID;
     private int mHurtID;
+    private int mBackground;
+    private boolean mIsBackgroundMusicPlaying = false;
 
     GameSound(Context context){
-        // Declare sound variables in constructor
-        mEatID = -1;
-        mCrashID = -1;
-        mHurtID = -1;
 
         // Initialize the SoundPool upon creation of GameSound object
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -50,6 +48,9 @@ public class GameSound {
             descriptor = assetManager.openFd("get_bad_apple.ogg");
             mHurtID = mSP.load(descriptor, 0);
 
+            descriptor = assetManager.openFd("snake_music.mp3");
+            mBackground = mSP.load(descriptor, 0);
+
         } catch (
                 IOException e) {
             // Error
@@ -66,6 +67,19 @@ public class GameSound {
     void badAppleSound(){
         mSP.play(mHurtID, 1, 1, 0, 0, 1);
     }
+
+    void startBackgroundMusic() {
+        mBackground = mSP.play(mBackground, 1, 1, 0, -1, 1); // Use -1 for looping
+    }
+
+    void stopBackgroundMusic() {
+        mSP.pause(mBackground);
+    }
+
+    void resumeBackgroundMusic(){
+        mSP.resume(mBackground);
+    }
+
 
 }
 

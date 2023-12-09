@@ -20,6 +20,9 @@ public class GameState {
     // This is how we will make all the high scores persist
     private SharedPreferences.Editor mEditor;
 
+    private GameSound mSound;
+    private boolean mIsBackgroundMusicPlaying = false;
+
     GameState(Context context){
         // Get the current high score
         SharedPreferences prefs;
@@ -40,6 +43,8 @@ public class GameState {
 
         // Sort the high scores in descending order
         Collections.sort(mHighScores, Collections.reverseOrder());
+
+        mSound = new GameSound(context);
     }
 
     void startNewGame(){
@@ -51,12 +56,6 @@ public class GameState {
     public void endGame(){
         mGameOver = true;
         mPaused = true;
-//        if(mScore > mHighScore){
-//            mHighScore = mScore;
-//            // Save high score
-//            mEditor.putInt("hi_score", mHighScore);
-//            mEditor.commit();
-//        }
 
         if (mScore > mHighScores.get(maxHighScore - 1)) {
             mHighScores.set(maxHighScore - 1, mScore);
@@ -91,6 +90,8 @@ public class GameState {
     }
     void startPlaying(){
         mPlaying = true;
+//        mSound.startBackgroundMusic();
+//        mIsBackgroundMusicPlaying = true;
     }
     boolean getIsPlaying(){
         return mPlaying;
@@ -103,22 +104,40 @@ public class GameState {
     }
     void pause(){
         mPaused = true;
+        if (mIsBackgroundMusicPlaying) {
+            mSound.stopBackgroundMusic();
+            mIsBackgroundMusicPlaying = false;
+       }
     }
     void startScreen(){
         mGameStart = true;
         mPaused = true;
         mGameOver = false;
+        if (mIsBackgroundMusicPlaying) {
+            mSound.stopBackgroundMusic();
+            mIsBackgroundMusicPlaying = false;
+        }
     }
     void resume(){
         mGameOver = false;
         mPaused = false;
         mPlaying = true;
         mGameStart = false;
+
+        if (!mIsBackgroundMusicPlaying) {
+            mSound.startBackgroundMusic();
+            mIsBackgroundMusicPlaying = true;
+        }
     }
     void stopEverything(){
         mPaused = true;
         mGameOver = true;
         mPlaying = false;
+
+        if (mIsBackgroundMusicPlaying) {
+            mSound.stopBackgroundMusic();
+            mIsBackgroundMusicPlaying = false;
+        }
     }
     boolean getPaused(){
         return mPaused;
