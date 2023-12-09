@@ -41,6 +41,7 @@ public class GameSound {
         }
 
         if (!mMediaPlayer.isPlaying()) {
+            //mMediaPlayer.setVolume(1f, 1f);  // Set volume before starting
             mMediaPlayer.start();
         }
     }
