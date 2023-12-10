@@ -161,6 +161,18 @@ class Snake implements IDrawable {
                 p.x--;
                 break;
         }
+        // Ensure the snake stays within the screen boundaries
+        if (p.x < 0) {
+            p.x = 0;
+        } else if (p.x >= mMoveRange.x) {
+            p.x = mMoveRange.x - 1;
+        }
+
+        if (p.y < 0) {
+            p.y = 0;
+        } else if (p.y >= mMoveRange.y) {
+            p.y = mMoveRange.y - 1;
+        }
 
     }
 
@@ -174,10 +186,10 @@ class Snake implements IDrawable {
         }
 
         // Hit any of the screen edges
-        if (segmentLocations.get(0).x == -1 ||
-                segmentLocations.get(0).x > mMoveRange.x ||
-                segmentLocations.get(0).y == -1 ||
-                segmentLocations.get(0).y > mMoveRange.y) {
+        if (segmentLocations.get(0).x <= 0 ||
+                segmentLocations.get(0).x >= mMoveRange.x - 1||
+                segmentLocations.get(0).y <= 0 ||
+                segmentLocations.get(0).y >= mMoveRange.y- 1) {
 
             dead = true;
         }
@@ -232,12 +244,16 @@ class Snake implements IDrawable {
     }
 
     boolean checkExplosion(Point l) {
-        if (segmentLocations.get(0).x == l.x && segmentLocations.get(0).y == l.y){
-            return true;
+        //makes sure segmentlocations if empty are not accessed
+        //avoids indexoutofbounds exception
+        if (!segmentLocations.isEmpty()) {
+            if (segmentLocations.get(0).x == l.x && segmentLocations.get(0).y == l.y) {
+                return true;
+            }
+            return false;
         }
         return false;
     }
-
     @Override
     public void draw(Canvas canvas, Paint paint) {
 

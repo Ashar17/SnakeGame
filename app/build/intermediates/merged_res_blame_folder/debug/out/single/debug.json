@@ -16,6 +16,10 @@
         "source": "com.example.snake.app-main-30:/mipmap-xxxhdpi/ic_launcher_round.webp"
     },
     {
+        "merged": "com.example.snake.app-merged_res-28:/drawable_snake_head.png.flat",
+        "source": "com.example.snake.app-main-30:/drawable/snake_head.png"
+    },
+    {
         "merged": "com.example.snake.app-merged_res-28:/drawable_powerstar.png.flat",
         "source": "com.example.snake.app-main-30:/drawable/powerstar.png"
     },
@@ -24,8 +28,16 @@
         "source": "com.example.snake.app-main-30:/drawable/apple1.png"
     },
     {
+        "merged": "com.example.snake.app-merged_res-28:/drawable-mdpi_snake_head.png.flat",
+        "source": "com.example.snake.app-main-30:/drawable-mdpi/snake_head.png"
+    },
+    {
         "merged": "com.example.snake.app-merged_res-28:/xml_data_extraction_rules.xml.flat",
         "source": "com.example.snake.app-main-30:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "com.example.snake.app-merged_res-28:/drawable-mdpi_snake_body.png.flat",
+        "source": "com.example.snake.app-main-30:/drawable-mdpi/snake_body.png"
     },
     {
         "merged": "com.example.snake.app-merged_res-28:/drawable_start_screen.png.flat",
@@ -72,6 +84,10 @@
         "source": "com.example.snake.app-main-30:/mipmap-xhdpi/ic_launcher_round.webp"
     },
     {
+        "merged": "com.example.snake.app-merged_res-28:/drawable-normal-mdpi-finger-470x320_startscreen.jpg.flat",
+        "source": "com.example.snake.app-main-30:/drawable-normal-mdpi-finger-470x320/startscreen.jpg"
+    },
+    {
         "merged": "com.example.snake.app-merged_res-28:/mipmap-mdpi_ic_launcher_round.webp.flat",
         "source": "com.example.snake.app-main-30:/mipmap-mdpi/ic_launcher_round.webp"
     },
@@ -82,6 +98,10 @@
     {
         "merged": "com.example.snake.app-merged_res-28:/drawable_ic_launcher_background.xml.flat",
         "source": "com.example.snake.app-main-30:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "com.example.snake.app-merged_res-28:/drawable-normal-mdpi-finger_start_screen.jpg.flat",
+        "source": "com.example.snake.app-main-30:/drawable-normal-mdpi-finger/start_screen.jpg"
     },
     {
         "merged": "com.example.snake.app-merged_res-28:/mipmap-anydpi-v26_ic_launcher.xml.flat",

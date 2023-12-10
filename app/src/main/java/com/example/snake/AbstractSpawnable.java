@@ -43,7 +43,7 @@ abstract class AbstractSpawnable implements IDrawable {
     void spawnApple(){
         // Choose two random values and place the apple
         Random random = new Random();
-        location.x = random.nextInt(mSpawnRange.x) + 1;
+        location.x = random.nextInt(mSpawnRange.x-1) + 1;
         location.y = random.nextInt(mSpawnRange.y - 1) + 1;
     }
 
