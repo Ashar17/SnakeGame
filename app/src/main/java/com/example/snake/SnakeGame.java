@@ -230,9 +230,13 @@ class SnakeGame extends SurfaceView implements Runnable, ISnakeGameBroadcaster {
             }
 
             // Did the snake die? or did it collide with bomb apple?
-            if (mSnake.detectDeath(mGameState.getScore()) ||
-                    (mSnake.checkExplosion(mBomb.getLocation()))) {
+            if (mSnake.checkExplosion(mBomb.getLocation())) {
                 mSound.bombSound();
+                mGameState.endGame();
+            }
+
+            if (mSnake.detectDeath(mGameState.getScore())) {
+                mSound.deathSound();
                 mGameState.endGame();
             }
         }
