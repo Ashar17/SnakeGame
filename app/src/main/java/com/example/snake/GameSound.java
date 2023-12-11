@@ -25,6 +25,8 @@ public class GameSound {
         playSound("get_bad_apple.ogg");
     }
 
+    void bombSound() { playSound("get_bomb.ogg"); }
+
     void startBackgroundMusic() {
         if (mMediaPlayer == null) {
             try {
