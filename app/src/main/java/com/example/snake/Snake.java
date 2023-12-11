@@ -129,10 +129,6 @@ class Snake implements IDrawable {
 
 
     void move() {
-
-        if (segmentLocations.isEmpty()) {
-            return;
-        }
         // Move the body
         // Start at the back and move it
         // to the position of the segment in front of it
@@ -205,8 +201,7 @@ class Snake implements IDrawable {
     }
 
     boolean checkDinner(Point l) {
-        if (!segmentLocations.isEmpty() &&
-                segmentLocations.get(0).x == l.x &&
+        if (segmentLocations.get(0).x == l.x &&
                 segmentLocations.get(0).y == l.y) {
             // Add a new Point to the list
             // located off-screen.
@@ -223,12 +218,12 @@ class Snake implements IDrawable {
         //Similar to check dinner, but for bad apples
         //Using checkDinner for bad apples does subtract score, but still adds length, this will fix that.
 
-        if (!segmentLocations.isEmpty() && segmentLocations.get(0).x == l.x &&
+        if (segmentLocations.get(0).x == l.x &&
                 segmentLocations.get(0).y == l.y) {
             //Removes the added segment when eating Bad Apple
             segmentLocations.remove(segmentLocations.size() - 1);
             return true;
-        } else if ( !segmentLocations.isEmpty() && segmentLocations.get(0).x == l.x &&
+        } else if (segmentLocations.get(0).x == l.x &&
                 segmentLocations.get(0).y == l.y && segmentLocations.size() == 1){
             return true;
         }
@@ -236,7 +231,7 @@ class Snake implements IDrawable {
     }
 
     boolean checkExplosion(Point l) {
-        if (!segmentLocations.isEmpty() && segmentLocations.get(0).x == l.x && segmentLocations.get(0).y == l.y){
+        if (segmentLocations.get(0).x == l.x && segmentLocations.get(0).y == l.y){
             return true;
         }
         return false;
