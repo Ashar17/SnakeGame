@@ -10,7 +10,10 @@ drawable head1
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable powerstar
+drawable snake_body
+drawable snake_head
 drawable start_screen
+drawable startscreen
 layout activity_main
 mipmap ic_launcher
 mipmap ic_launcher_round
