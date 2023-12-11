@@ -50,8 +50,8 @@ class SnakeGame extends SurfaceView implements Runnable, ISnakeGameBroadcaster {
     private ArrayList<IDrawable> gameObjects;
     long TARGET_FPS = 10;
     // used to calculate when to increase difficulty
-    final int checkpoint = 4;
-    int scoreIncrement = 4;
+    final int checkpoint = 3;
+    int scoreIncrement = 3;
 
 
     // This is the constructor method that gets called
@@ -93,6 +93,7 @@ class SnakeGame extends SurfaceView implements Runnable, ISnakeGameBroadcaster {
 
         mSnake = new Snake(context, new Point(NUM_BLOCKS_WIDE,
                         mNumBlocksHigh), blockSize);
+        mSnake.reset(NUM_BLOCKS_WIDE, mNumBlocksHigh);
 
         // put obstacles in array list
         obstacles = new ArrayList<>();
@@ -131,7 +132,7 @@ class SnakeGame extends SurfaceView implements Runnable, ISnakeGameBroadcaster {
             o.isNotOnScreen();
         }
         // reset variable
-        scoreIncrement = 4;
+        scoreIncrement = checkpoint;
 
         // Resets the Score and changes state variables
         mGameState.startNewGame();
