@@ -111,6 +111,7 @@ class Snake implements IDrawable {
         // The halfway point across the screen in pixels
         // Used to detect which side of screen was pressed
         halfWayPoint = mr.x * ss / 2;
+
     }
 
     // Get the snake ready for a new game

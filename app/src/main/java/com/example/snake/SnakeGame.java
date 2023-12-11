@@ -93,6 +93,7 @@ class SnakeGame extends SurfaceView implements Runnable, ISnakeGameBroadcaster {
 
         mSnake = new Snake(context, new Point(NUM_BLOCKS_WIDE,
                         mNumBlocksHigh), blockSize);
+        mSnake.reset(NUM_BLOCKS_WIDE, mNumBlocksHigh);
 
         // put obstacles in array list
         obstacles = new ArrayList<>();
